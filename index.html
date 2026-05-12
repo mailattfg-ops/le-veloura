@@ -66,21 +66,15 @@ ul { list-style: none; }
   -webkit-backdrop-filter: blur(14px);
   box-shadow: 0 1px 0 var(--line);
 }
-.nav-logo { display: flex; align-items: center; gap: 11px; }
+.nav-logo { display: flex; align-items: center; }
 .nav-logo-img {
-  width: 36px; height: 36px; object-fit: contain;
-  filter: drop-shadow(0 0 6px rgba(192,144,80,0.4));
+  height: 42px; width: auto; object-fit: contain;
+  filter: drop-shadow(0 1px 6px rgba(0,0,0,0.35));
+  transition: filter 0.4s;
 }
-.nav-brand-name {
-  font-family: 'Italiana', serif; font-size: 17px;
-  letter-spacing: 0.1em; color: #fff; transition: color 0.4s; line-height: 1;
+#nav.scrolled .nav-logo-img {
+  filter: none;
 }
-#nav.scrolled .nav-brand-name { color: var(--text); }
-.nav-brand-sub {
-  font-size: 8px; letter-spacing: 0.3em; text-transform: uppercase;
-  color: rgba(255,255,255,0.5); transition: color 0.4s; margin-top: 3px;
-}
-#nav.scrolled .nav-brand-sub { color: var(--light); }
 
 .nav-links { display: flex; align-items: center; gap: 34px; }
 .nav-link {
@@ -226,21 +220,64 @@ ul { list-style: none; }
 }
 .fw-img:hover img { transform: scale(1.02); }
 
+/* ── SPACES OVERVIEW ─────────────────────────── */
+#spaces-overview {
+  background: var(--white);
+  padding: clamp(48px,6vw,80px) var(--px) clamp(40px,5vw,64px);
+  text-align: center;
+  border-top: 1px solid var(--line);
+}
+.sov-eyebrow {
+  font-size: 10px; letter-spacing: 0.35em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 12px;
+}
+.sov-diamond { color: var(--burgundy); margin-bottom: 12px; font-size: 13px; display: block; }
+.sov-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(20px, 2.4vw, 34px);
+  font-weight: 400; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--text); margin-bottom: clamp(16px,2vw,28px);
+}
+.sov-body {
+  font-size: clamp(14px, 1.15vw, 16px); line-height: 1.9;
+  color: var(--text); max-width: 660px;
+  margin: 0 auto clamp(16px,2vw,28px);
+  font-weight: 300;
+}
+.sov-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0 clamp(12px, 2vw, 28px);
+  max-width: 680px; margin: 0 auto;
+  align-items: start;
+}
+.sov-card { display: flex; flex-direction: column; align-items: center; }
+.sov-illus {
+  width: 100%; max-width: 155px; color: var(--burgundy);
+  margin-bottom: clamp(14px, 1.8vw, 20px);
+  height: 128px;
+  display: flex; align-items: flex-end; justify-content: center;
+}
+.sov-illus svg { width: 100%; height: auto; display: block; }
+.sov-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(13px, 1.2vw, 17px);
+  font-weight: 700; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--burgundy);
+  margin-bottom: 9px;
+}
+.sov-sub {
+  font-size: clamp(13px, 1.05vw, 15px);
+  color: var(--text); font-weight: 300; letter-spacing: 0.02em;
+}
+@media (max-width: 640px) {
+  .sov-grid { grid-template-columns: 1fr 1fr; gap: 32px 16px; max-width: 340px; }
+  .sov-illus { max-width: 96px; height: 82px; }
+}
+
 /* ── SPACES ──────────────────────────────────── */
 #spaces { background: var(--white); }
 
-.spaces-intro {
-  padding: var(--py) var(--px) 60px;
-  border-bottom: 1px solid var(--line);
-  display: flex; justify-content: space-between; align-items: flex-end; gap: 40px;
-}
-.spaces-label { font-size: 9.5px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
-.spaces-h2 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(28px, 3.8vw, 54px); font-weight: 300;
-  line-height: 1.12; color: var(--text); max-width: 540px;
-}
-.spaces-count { font-family: 'Cormorant Garamond', serif; font-size: 13px; font-style: italic; color: var(--light); flex-shrink: 0; }
 
 /* ── SPACES GRID (amitarasa pattern) ─────────── */
 .spaces-grid {
@@ -572,7 +609,8 @@ ul { list-style: none; }
 .loc-addr { font-size: 13.5px; line-height: 1.88; color: var(--muted); }
 .loc-addr a { color: var(--gold); }
 
-.map-block { background: var(--beige); border: 1px solid var(--line); aspect-ratio: 1; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+.map-block { background: var(--beige); border: 1px solid var(--line); aspect-ratio: 1; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; cursor: pointer; transition: border-color 0.3s, box-shadow 0.3s; text-decoration: none; }
+.map-block:hover { border-color: var(--gold); box-shadow: 0 4px 24px rgba(158,117,56,0.15); }
 .map-dots { position: absolute; inset: 0; pointer-events: none; background-image: radial-gradient(var(--line) 1px, transparent 1px); background-size: 26px 26px; }
 .map-pin-wrap { position: relative; z-index: 2; text-align: center; }
 .map-dot { width: 11px; height: 11px; background: var(--gold); border-radius: 50%; margin: 0 auto 14px; animation: pdot 2.5s ease-in-out infinite; }
@@ -628,7 +666,7 @@ ul { list-style: none; }
   .nav-enquiry { display: none; }
   .nav-ham { display: flex; }
   .intro-wrap { grid-template-columns: 1fr; gap: 28px; }
-  .spaces-intro { flex-direction: column; align-items: flex-start; gap: 14px; }
+
   .hero-features { gap: 16px 24px; }
   .venue-specs { display: none; }
 /* media strip removed */
@@ -711,11 +749,7 @@ ul { list-style: none; }
 <!-- NAV -->
 <nav id="nav">
   <a href="#" class="nav-logo">
-    <img class="nav-logo-img" src="veloura-imgs/logo-transparent.webp" alt="Le Veloura">
-    <div>
-      <div class="nav-brand-name">Le VELOURA</div>
-      <div class="nav-brand-sub">Convention Centre</div>
-    </div>
+    <img class="nav-logo-img" src="veloura-imgs/logo-full.webp" alt="Le Veloura Convention Centre">
   </a>
   <div class="nav-links">
     <a href="#intro"         class="nav-link">About</a>
@@ -806,18 +840,415 @@ ul { list-style: none; }
 </div>
 
 
-<!-- ════════════════════════════════
-     SPACES
-════════════════════════════════ -->
+<!-- ================================================
+     SPACES OVERVIEW
+================================================ -->
+<section id="spaces-overview">
+
+  <p class="sov-eyebrow reveal">The Spaces</p>
+  <span class="sov-diamond reveal">&#9670;</span>
+  <h2 class="sov-heading reveal">Explore Our Curated Spaces</h2>
+  <p class="sov-body reveal">All of Le Veloura is dedicated to your celebration. The property is available exclusively for one event at a time, no matter how big or small the gathering. With four distinct spaces to choose from, every event is hosted with undivided attention — to you and yours.</p>
+
+  <div class="sov-grid">
+
+    <!-- AURELIUS - Grand Hall Interior -->
+    <div class="sov-card reveal">
+      <div class="sov-illus">
+        <svg viewBox="0 0 360 276" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- ceiling / floor molding -->
+  <line x1="0" y1="0" x2="360" y2="0"/>
+  <line x1="0" y1="9" x2="360" y2="9"/>
+  <line x1="0" y1="17" x2="360" y2="17"/>
+  <line x1="0" y1="261" x2="360" y2="261"/>
+  <line x1="0" y1="268" x2="360" y2="268"/>
+  <!-- outer left column -->
+  <path d="M4 9 L26 9 L28 17 L2 17 Z"/>
+  <path d="M4 261 L26 261 L28 268 L2 268 Z"/>
+  <line x1="8"  y1="17" x2="8"  y2="261"/>
+  <line x1="22" y1="17" x2="22" y2="261"/>
+  <!-- inner left column -->
+  <path d="M74 9 L94 9 L96 17 L72 17 Z"/>
+  <path d="M74 261 L94 261 L96 268 L72 268 Z"/>
+  <line x1="78" y1="17" x2="78" y2="261"/>
+  <line x1="90" y1="17" x2="90" y2="261"/>
+  <!-- inner right column -->
+  <path d="M266 9 L286 9 L288 17 L264 17 Z"/>
+  <path d="M266 261 L286 261 L288 268 L264 268 Z"/>
+  <line x1="270" y1="17" x2="270" y2="261"/>
+  <line x1="282" y1="17" x2="282" y2="261"/>
+  <!-- outer right column -->
+  <path d="M334 9 L356 9 L358 17 L332 17 Z"/>
+  <path d="M334 261 L356 261 L358 268 L332 268 Z"/>
+  <line x1="338" y1="17" x2="338" y2="261"/>
+  <line x1="352" y1="17" x2="352" y2="261"/>
+  <!-- LEFT ARCH — true semicircle via A command (r=28) -->
+  <path d="M22 268 L22 152 A28 28 0 0 0 78 152 L78 268"/>
+  <path d="M26 268 L26 155 A23 23 0 0 0 74 155 L74 268" stroke-width="0.7"/>
+  <!-- RIGHT ARCH -->
+  <path d="M282 268 L282 152 A28 28 0 0 0 338 152 L338 268"/>
+  <path d="M286 268 L286 155 A23 23 0 0 0 334 155 L334 268" stroke-width="0.7"/>
+  <!-- CENTER ARCH (r=90) -->
+  <path d="M90 268 L90 118 A90 90 0 0 0 270 118 L270 268"/>
+  <path d="M96 268 L96 122 A87 87 0 0 0 264 122 L264 268" stroke-width="0.7"/>
+  <!-- keystone -->
+  <path d="M174 28 Q180 21 186 28 L184 38 Q180 32 176 38 Z" fill="currentColor" stroke="none" opacity="0.25"/>
+  <!-- LEFT GARLAND SWAG (outer→inner column tops) -->
+  <path d="M22 38 Q50 62 78 38"/>
+  <path d="M22 44 Q50 70 78 44"/>
+  <circle cx="50" cy="69" r="6"/> <circle cx="40" cy="61" r="4.5"/> <circle cx="60" cy="61" r="4.5"/>
+  <circle cx="32" cy="52" r="3"/>  <circle cx="68" cy="52" r="3"/>
+  <!-- RIGHT GARLAND SWAG -->
+  <path d="M282 38 Q310 62 338 38"/>
+  <path d="M282 44 Q310 70 338 44"/>
+  <circle cx="310" cy="69" r="6"/> <circle cx="300" cy="61" r="4.5"/> <circle cx="320" cy="61" r="4.5"/>
+  <circle cx="292" cy="52" r="3"/>  <circle cx="328" cy="52" r="3"/>
+  <!-- LEFT BALLOON CLUSTER (left bay, above arch spring) -->
+  <circle cx="42" cy="112" r="14"/>
+  <circle cx="27" cy="100" r="12"/>
+  <circle cx="56" cy="98"  r="12"/>
+  <circle cx="42" cy="86"  r="10"/>
+  <path d="M42 126 Q44 138 40 148"/>
+  <path d="M27 112 Q20 126 27 138"/>
+  <path d="M56 110 Q63 124 56 136"/>
+  <!-- RIGHT BALLOON CLUSTER (right bay) -->
+  <circle cx="318" cy="112" r="14"/>
+  <circle cx="304" cy="100" r="12"/>
+  <circle cx="333" cy="98"  r="12"/>
+  <circle cx="318" cy="86"  r="10"/>
+  <path d="M318 126 Q320 138 316 148"/>
+  <path d="M304 112 Q297 126 304 138"/>
+  <path d="M333 110 Q340 124 333 136"/>
+  <!-- WEDDING CAKE (inside left arch, cx≈50) -->
+  <!-- table -->
+  <path d="M30 258 Q50 266 72 258 L72 264 Q50 272 30 264 Z"/>
+  <line x1="34" y1="264" x2="30" y2="268"/>
+  <line x1="68" y1="264" x2="72" y2="268"/>
+  <!-- bottom tier -->
+  <ellipse cx="51" cy="236" rx="18" ry="5"/>
+  <path d="M33 236 L33 250 Q51 258 69 250 L69 236"/>
+  <circle cx="42" cy="246" r="2.5"/> <circle cx="51" cy="248" r="2.5"/> <circle cx="60" cy="246" r="2.5"/>
+  <!-- middle tier -->
+  <ellipse cx="51" cy="221" rx="13" ry="4"/>
+  <path d="M38 221 L38 234 Q51 240 64 234 L64 221"/>
+  <!-- top tier -->
+  <ellipse cx="51" cy="209" rx="8" ry="3"/>
+  <path d="M43 209 L43 219 Q51 224 59 219 L59 209"/>
+  <!-- topper -->
+  <line x1="51" y1="206" x2="51" y2="196"/>
+  <path d="M47 200 Q51 194 55 200"/>
+  <circle cx="51" cy="192" r="4"/>
+  <!-- COUPLE SILHOUETTES (in centre arch) -->
+  <ellipse cx="163" cy="190" rx="7" ry="8"/>
+  <path d="M163 198 Q157 215 155 238 Q153 252 150 268"/>
+  <path d="M163 198 Q169 215 171 238 Q173 252 176 268"/>
+  <path d="M150 268 Q163 262 176 268"/>
+  <ellipse cx="188" cy="188" rx="6" ry="7"/>
+  <path d="M188 195 L184 226 L182 268"/>
+  <path d="M188 195 L192 226 L194 268"/>
+  <line x1="182" y1="268" x2="194" y2="268"/>
+  <!-- mini chandelier hanging from arch apex -->
+  <line x1="180" y1="28" x2="180" y2="36"/>
+  <ellipse cx="180" cy="39" rx="10" ry="3"/>
+  <line x1="170" y1="39" x2="166" y2="48"/>
+  <line x1="180" y1="42" x2="180" y2="51"/>
+  <line x1="190" y1="39" x2="194" y2="48"/>
+  <line x1="166" y1="48" x2="166" y2="41"/>
+  <line x1="180" y1="51" x2="180" y2="44"/>
+  <line x1="194" y1="48" x2="194" y2="41"/>
+  <path d="M166 41 Q164 36 166 30 Q168 36 166 41"/>
+  <path d="M180 44 Q178 39 180 33 Q182 39 180 44"/>
+  <path d="M194 41 Q192 36 194 30 Q196 36 194 41"/>
+  <line x1="174" y1="41" x2="172" y2="49"/><circle cx="172" cy="50" r="1.6" fill="currentColor" stroke="none"/>
+  <line x1="186" y1="41" x2="188" y2="49"/><circle cx="188" cy="50" r="1.6" fill="currentColor" stroke="none"/>
+</svg>
+      </div>
+      <p class="sov-name">Aurelius</p>
+      <p class="sov-sub">Celebration Hall</p>
+    </div>
+
+    <!-- THE PROMENADE - Garden Gazebo -->
+    <div class="sov-card reveal d1">
+      <div class="sov-illus">
+        <svg viewBox="0 0 360 290" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Horizon -->
+          <line x1="0" y1="148" x2="360" y2="148"/>
+          <!-- Pathway edges -->
+          <path d="M80 290 L120 148"/>
+          <path d="M280 290 L240 148"/>
+          <!-- Cobblestone crosslines -->
+          <line x1="82" y1="276" x2="278" y2="276"/>
+          <line x1="85" y1="260" x2="275" y2="260"/>
+          <line x1="90" y1="244" x2="270" y2="244"/>
+          <line x1="95" y1="228" x2="265" y2="228"/>
+          <line x1="100" y1="213" x2="260" y2="213"/>
+          <line x1="106" y1="199" x2="254" y2="199"/>
+          <line x1="112" y1="185" x2="248" y2="185"/>
+          <line x1="117" y1="172" x2="243" y2="172"/>
+          <line x1="122" y1="161" x2="238" y2="161"/>
+          <line x1="126" y1="152" x2="234" y2="152"/>
+          <!-- Path vertical dividers -->
+          <line x1="180" y1="148" x2="180" y2="290"/>
+          <line x1="154" y1="148" x2="138" y2="290"/>
+          <line x1="206" y1="148" x2="222" y2="290"/>
+          <line x1="136" y1="148" x2="114" y2="290"/>
+          <line x1="224" y1="148" x2="246" y2="290"/>
+          <!-- Gazebo dome -->
+          <path d="M120 148 Q122 112 180 100 Q238 112 240 148"/>
+          <!-- Dome ribs -->
+          <line x1="140" y1="148" x2="144" y2="108"/>
+          <line x1="160" y1="148" x2="162" y2="101"/>
+          <line x1="180" y1="148" x2="180" y2="100"/>
+          <line x1="200" y1="148" x2="198" y2="101"/>
+          <line x1="220" y1="148" x2="216" y2="108"/>
+          <!-- Dome finial -->
+          <line x1="180" y1="100" x2="180" y2="88"/>
+          <path d="M175 88 L180 80 L185 88"/>
+          <line x1="175" y1="88" x2="185" y2="88"/>
+          <circle cx="180" cy="78" r="3.5"/>
+          <!-- Entablature -->
+          <line x1="120" y1="148" x2="240" y2="148"/>
+          <line x1="118" y1="153" x2="242" y2="153"/>
+          <line x1="116" y1="157" x2="244" y2="157"/>
+          <!-- Columns -->
+          <line x1="126" y1="157" x2="126" y2="186"/>
+          <line x1="142" y1="157" x2="142" y2="186"/>
+          <line x1="180" y1="157" x2="180" y2="186"/>
+          <line x1="218" y1="157" x2="218" y2="186"/>
+          <line x1="234" y1="157" x2="234" y2="186"/>
+          <!-- Column caps and bases -->
+          <line x1="122" y1="158" x2="130" y2="158"/> <line x1="138" y1="158" x2="146" y2="158"/>
+          <line x1="214" y1="158" x2="222" y2="158"/> <line x1="230" y1="158" x2="238" y2="158"/>
+          <line x1="122" y1="184" x2="130" y2="184"/> <line x1="138" y1="184" x2="146" y2="184"/>
+          <line x1="214" y1="184" x2="222" y2="184"/> <line x1="230" y1="184" x2="238" y2="184"/>
+          <!-- Gazebo platform & steps -->
+          <path d="M116 186 Q180 193 244 186"/>
+          <path d="M112 192 Q180 200 248 192"/>
+          <path d="M112 192 L108 205 Q180 213 252 205 L248 192"/>
+          <!-- Left tall cypress -->
+          <path d="M44 148 Q38 108 44 54 Q50 108 44 148"/>
+          <path d="M40 100 Q44 91 48 100"/> <path d="M39 120 Q44 110 49 120"/>
+          <path d="M40 80 Q44 71 48 80"/>
+          <line x1="44" y1="148" x2="44" y2="290"/>
+          <!-- Right tall cypress -->
+          <path d="M316 148 Q310 108 316 54 Q322 108 316 148"/>
+          <path d="M312 100 Q316 91 320 100"/> <path d="M311 120 Q316 110 321 120"/>
+          <path d="M312 80 Q316 71 320 80"/>
+          <line x1="316" y1="148" x2="316" y2="290"/>
+          <!-- Left round-canopy tree -->
+          <circle cx="82" cy="122" r="30"/> <circle cx="82" cy="122" r="21"/> <circle cx="82" cy="122" r="13"/>
+          <line x1="82" y1="152" x2="82" y2="206"/>
+          <!-- Right round-canopy tree -->
+          <circle cx="278" cy="122" r="30"/> <circle cx="278" cy="122" r="21"/> <circle cx="278" cy="122" r="13"/>
+          <line x1="278" y1="152" x2="278" y2="206"/>
+          <!-- Background tree silhouettes -->
+          <path d="M2 148 Q9 130 16 148"/> <path d="M14 148 Q21 134 28 148"/>
+          <path d="M332 148 Q339 130 346 148"/> <path d="M344 148 Q351 134 358 148"/>
+          <!-- Foreground grass -->
+          <path d="M0 198 Q14 186 28 198"/> <path d="M24 216 Q38 204 52 216"/>
+          <path d="M308 198 Q322 186 336 198"/> <path d="M332 216 Q346 204 360 216"/>
+        </svg>
+      </div>
+      <p class="sov-name">The Promenade</p>
+      <p class="sov-sub">Outdoor Lawn</p>
+    </div>
+
+    <!-- THE LUMIERE - High Tea Setting -->
+    <div class="sov-card reveal d2">
+      <div class="sov-illus">
+        <svg viewBox="0 0 380 290" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Floor line -->
+          <line x1="10" y1="256" x2="370" y2="256"/>
+          <!-- FLOOR LAMP (far right) -->
+          <ellipse cx="326" cy="252" rx="24" ry="6"/>
+          <line x1="326" y1="246" x2="326" y2="82"/>
+          <!-- Curved arm at top -->
+          <path d="M326 82 Q326 70 314 65"/>
+          <!-- Bell shade -->
+          <path d="M280 86 Q284 60 314 58 Q344 60 348 86"/>
+          <path d="M278 92 L278 106 Q296 118 314 118 Q332 118 350 106 L350 92"/>
+          <path d="M280 86 L278 92 L350 92 L348 86"/>
+          <!-- Shade crystal drops -->
+          <line x1="292" y1="106" x2="292" y2="117"/><circle cx="292" cy="118" r="2.2" fill="currentColor" stroke="none"/>
+          <line x1="306" y1="112" x2="306" y2="123"/><circle cx="306" cy="124" r="2.2" fill="currentColor" stroke="none"/>
+          <line x1="314" y1="114" x2="314" y2="125"/><circle cx="314" cy="126" r="2.2" fill="currentColor" stroke="none"/>
+          <line x1="322" y1="112" x2="322" y2="123"/><circle cx="322" cy="124" r="2.2" fill="currentColor" stroke="none"/>
+          <line x1="336" y1="106" x2="336" y2="117"/><circle cx="336" cy="118" r="2.2" fill="currentColor" stroke="none"/>
+          <!-- Shade top knob -->
+          <circle cx="314" cy="56" r="4.5"/>
+          <!-- ARMCHAIR -->
+          <path d="M198 180 L198 110 Q198 92 222 92 Q246 92 246 110 L246 180"/>
+          <path d="M200 92 Q222 75 244 92"/>
+          <path d="M204 92 Q222 79 240 92"/>
+          <!-- Back splat carved detail -->
+          <path d="M210 146 Q222 134 234 146 Q222 158 210 146"/>
+          <path d="M212 128 Q222 120 232 128"/>
+          <path d="M213 164 Q222 158 231 164"/>
+          <!-- Inner back frame -->
+          <path d="M206 180 L206 114 Q206 98 222 98 Q238 98 238 114 L238 180" stroke-width="0.7"/>
+          <!-- Arms -->
+          <path d="M198 134 L182 134 L182 182 L198 182"/>
+          <path d="M246 134 L262 134 L262 182 L246 182"/>
+          <path d="M180 134 Q173 131 175 122"/>
+          <path d="M264 134 Q271 131 269 122"/>
+          <!-- Seat -->
+          <path d="M182 182 Q222 194 262 182 L262 200 Q222 213 182 200 Z"/>
+          <!-- Legs -->
+          <line x1="186" y1="200" x2="182" y2="256"/>
+          <line x1="259" y1="200" x2="262" y2="256"/>
+          <line x1="198" y1="204" x2="196" y2="256"/>
+          <line x1="246" y1="204" x2="248" y2="256"/>
+          <line x1="186" y1="232" x2="259" y2="232"/>
+          <path d="M180 252 Q182 258 188 256"/> <path d="M264 252 Q262 258 256 256"/>
+          <!-- ROUND TABLE -->
+          <ellipse cx="130" cy="212" rx="82" ry="20"/>
+          <ellipse cx="130" cy="212" rx="80" ry="18" stroke-width="0.5"/>
+          <!-- Tablecloth drape -->
+          <path d="M48 212 Q44 230 58 240 Q90 256 130 258 Q170 256 202 240 Q216 230 212 212"/>
+          <path d="M48 216 Q46 228 58 236"/> <path d="M212 216 Q214 228 202 236"/>
+          <!-- Table base -->
+          <line x1="130" y1="232" x2="130" y2="248"/>
+          <path d="M110 252 Q130 260 150 252 Q130 264 110 252Z"/>
+          <!-- TEAPOT -->
+          <path d="M98 200 Q92 196 92 204 Q92 216 102 218 Q114 220 116 211 Q120 200 108 196 Q104 194 98 200"/>
+          <path d="M92 204 Q83 202 81 209 Q83 216 92 214"/>
+          <path d="M116 202 Q126 200 126 208 Q126 216 116 214"/>
+          <path d="M96 196 Q106 188 116 196"/>
+          <circle cx="106" cy="186" r="3"/>
+          <!-- TEACUP -->
+          <path d="M138 200 Q138 213 151 214 Q164 213 164 200Z"/>
+          <ellipse cx="151" cy="200" rx="13" ry="4"/>
+          <path d="M164 202 Q173 202 173 209 Q173 216 164 214"/>
+          <ellipse cx="151" cy="215" rx="17" ry="5"/>
+          <ellipse cx="151" cy="218" rx="22" ry="6" stroke-width="0.7"/>
+          <!-- 3-TIER CAKE STAND (left) -->
+          <!-- Bottom tier -->
+          <ellipse cx="46" cy="190" rx="44" ry="11"/>
+          <path d="M2 190 L2 176 Q2 172 46 172 Q90 172 90 176 L90 190"/>
+          <path d="M10 176 Q17 168 24 176"/> <path d="M32 176 Q39 168 46 176"/>
+          <path d="M56 176 Q63 168 70 176"/> <path d="M74 176 Q81 168 88 176"/>
+          <!-- Bottom glass dome outline -->
+          <path d="M2 190 Q2 170 46 165 Q90 170 90 190" stroke-width="0.6"/>
+          <!-- Middle tier -->
+          <ellipse cx="46" cy="156" rx="31" ry="8"/>
+          <path d="M15 156 L15 144 Q15 141 46 141 Q77 141 77 144 L77 156"/>
+          <path d="M22 144 Q29 137 36 144"/> <path d="M46 144 Q53 137 60 144"/> <path d="M66 144 Q73 137 76 144"/>
+          <path d="M15 156 Q15 139 46 135 Q77 139 77 156" stroke-width="0.6"/>
+          <!-- Top tier -->
+          <ellipse cx="46" cy="128" rx="20" ry="6"/>
+          <path d="M26 128 L26 118 Q26 114 46 114 Q66 114 66 118 L66 128"/>
+          <path d="M34 118 Q46 110 58 118"/>
+          <path d="M26 128 Q26 112 46 108 Q66 112 66 128" stroke-width="0.6"/>
+          <circle cx="46" cy="106" r="3.5"/>
+          <!-- Stand pole + base -->
+          <line x1="46" y1="190" x2="46" y2="220"/>
+          <ellipse cx="46" cy="222" rx="8" ry="3"/>
+          <path d="M30 226 Q46 234 62 226 Q46 238 30 226Z"/>
+          <line x1="46" y1="190" x2="46" y2="156"/>
+          <line x1="46" y1="156" x2="46" y2="128"/>
+        </svg>
+      </div>
+      <p class="sov-name">The Lumiere</p>
+      <p class="sov-sub">High Tea &amp; Lounge</p>
+    </div>
+
+    <!-- CELESTIA - Dining Hall -->
+    <div class="sov-card reveal d3">
+      <div class="sov-illus">
+        <svg viewBox="0 0 420 280" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- CHANDELIER -->
+  <line x1="210" y1="0" x2="210" y2="18"/>
+  <ellipse cx="210" cy="22" rx="28" ry="7"/>
+  <line x1="182" y1="22" x2="158" y2="48"/>
+  <line x1="195" y1="22" x2="183" y2="48"/>
+  <line x1="210" y1="29" x2="210" y2="50"/>
+  <line x1="225" y1="22" x2="237" y2="48"/>
+  <line x1="238" y1="22" x2="262" y2="48"/>
+  <line x1="154" y1="48" x2="162" y2="48"/> <line x1="158" y1="48" x2="158" y2="34"/>
+  <line x1="179" y1="48" x2="187" y2="48"/> <line x1="183" y1="48" x2="183" y2="34"/>
+  <line x1="206" y1="50" x2="214" y2="50"/> <line x1="210" y1="50" x2="210" y2="36"/>
+  <line x1="233" y1="48" x2="241" y2="48"/> <line x1="237" y1="48" x2="237" y2="34"/>
+  <line x1="258" y1="48" x2="266" y2="48"/> <line x1="262" y1="48" x2="262" y2="34"/>
+  <path d="M158 34 Q156 27 158 19 Q160 27 158 34"/>
+  <path d="M183 34 Q181 27 183 19 Q185 27 183 34"/>
+  <path d="M210 36 Q208 29 210 21 Q212 29 210 36"/>
+  <path d="M237 34 Q235 27 237 19 Q239 27 237 34"/>
+  <path d="M262 34 Q260 27 262 19 Q264 27 262 34"/>
+  <line x1="196" y1="25" x2="193" y2="37"/><circle cx="193" cy="38" r="2.2" fill="currentColor" stroke="none"/>
+  <line x1="210" y1="29" x2="210" y2="41"/><circle cx="210" cy="42" r="2.2" fill="currentColor" stroke="none"/>
+  <line x1="224" y1="25" x2="227" y2="37"/><circle cx="227" cy="38" r="2.2" fill="currentColor" stroke="none"/>
+  <!-- DINING TABLE (perspective: near edge y=198, far edge y=172) -->
+  <path d="M82 172 Q210 164 338 172"/>
+  <path d="M74 198 Q210 190 346 198"/>
+  <path d="M74 198 Q78 185 82 172"/>
+  <path d="M346 198 Q342 185 338 172"/>
+  <path d="M74 198 L74 212 Q210 204 346 212 L346 198"/>
+  <!-- table runner -->
+  <path d="M148 182 Q210 176 272 182 Q210 188 148 182 Z" stroke-width="0.7"/>
+  <!-- table legs -->
+  <line x1="92"  y1="211" x2="88"  y2="266"/>
+  <line x1="328" y1="211" x2="332" y2="266"/>
+  <line x1="130" y1="213" x2="128" y2="266"/>
+  <line x1="290" y1="213" x2="292" y2="266"/>
+  <!-- LEFT END CHAIR — arched back via A command (cx=40, r=22, spring y=194) -->
+  <path d="M18 194 L18 150 A22 22 0 0 0 62 150 L62 194"/>
+  <path d="M22 194 L22 154 A18 18 0 0 0 58 154 L58 194" stroke-width="0.7"/>
+  <!-- carved back detail -->
+  <path d="M26 178 Q40 168 54 178 Q40 188 26 178"/>
+  <path d="M28 163 Q40 155 52 163"/>
+  <!-- seat -->
+  <path d="M14 194 Q40 206 66 194 L66 210 Q40 222 14 210 Z"/>
+  <!-- legs -->
+  <line x1="18"  y1="210" x2="14"  y2="268"/>
+  <line x1="62"  y1="210" x2="66"  y2="268"/>
+  <line x1="22"  y1="214" x2="20"  y2="268"/>
+  <line x1="58"  y1="214" x2="60"  y2="268"/>
+  <line x1="18"  y1="240" x2="62"  y2="240"/>
+  <!-- garland on left chair -->
+  <path d="M14 162 Q24 172 40 162 Q56 172 66 162"/>
+  <circle cx="24"  cy="171" r="4.5"/> <circle cx="40" cy="174" r="5.5"/> <circle cx="56" cy="171" r="4.5"/>
+  <circle cx="16"  cy="165" r="3"/>   <circle cx="64" cy="165" r="3"/>
+  <!-- RIGHT END CHAIR — mirror (cx=380) -->
+  <path d="M358 194 L358 150 A22 22 0 0 0 402 150 L402 194"/>
+  <path d="M362 194 L362 154 A18 18 0 0 0 398 154 L398 194" stroke-width="0.7"/>
+  <path d="M366 178 Q380 168 394 178 Q380 188 366 178"/>
+  <path d="M368 163 Q380 155 392 163"/>
+  <path d="M354 194 Q380 206 406 194 L406 210 Q380 222 354 210 Z"/>
+  <line x1="358" y1="210" x2="354" y2="268"/>
+  <line x1="402" y1="210" x2="406" y2="268"/>
+  <line x1="362" y1="214" x2="360" y2="268"/>
+  <line x1="398" y1="214" x2="400" y2="268"/>
+  <line x1="358" y1="240" x2="402" y2="240"/>
+  <!-- garland on right chair -->
+  <path d="M354 162 Q364 172 380 162 Q396 172 406 162"/>
+  <circle cx="364" cy="171" r="4.5"/> <circle cx="380" cy="174" r="5.5"/> <circle cx="396" cy="171" r="4.5"/>
+  <circle cx="356" cy="165" r="3"/>   <circle cx="404" cy="165" r="3"/>
+  <!-- 2 chairs behind table (far side, partial view) -->
+  <path d="M148 168 L148 116 A18 18 0 0 0 184 116 L184 168" stroke-width="0.85"/>
+  <path d="M152 168 L152 120 A14 14 0 0 0 180 120 L180 168" stroke-width="0.6"/>
+  <path d="M238 168 L238 116 A18 18 0 0 0 274 116 L274 168" stroke-width="0.85"/>
+  <path d="M242 168 L242 120 A14 14 0 0 0 270 120 L270 168" stroke-width="0.6"/>
+  <!-- table floral centrepiece -->
+  <circle cx="210" cy="177" r="9"/>
+  <circle cx="197" cy="181" r="6"/> <circle cx="223" cy="181" r="6"/>
+  <circle cx="188" cy="186" r="4.5"/> <circle cx="232" cy="186" r="4.5"/>
+  <!-- floor line -->
+  <line x1="10" y1="270" x2="410" y2="270"/>
+</svg>
+      </div>
+      <p class="sov-name">Celestia</p>
+      <p class="sov-sub">Dining Hall</p>
+    </div>
+
+  </div>
+
+  <div style="height:1px;background:var(--burgundy);margin-top:clamp(40px,5vw,64px)"></div>
+
+</section>
+
 <section id="spaces">
 
-  <div class="spaces-intro">
-    <div class="reveal">
-      <p class="spaces-label">The Spaces</p>
-      <h2 class="spaces-h2">All the room you need,<br>for everything you imagine.</h2>
-    </div>
-    <p class="spaces-count reveal d2">Four Distinct Spaces</p>
-  </div>
+
 
 
   <div class="spaces-grid">
@@ -900,15 +1331,15 @@ ul { list-style: none; }
           <button class="vg-btn prev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
           <button class="vg-btn next" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
         </div>
-        <div class="vg-cell active"><img src="veloura-imgs/p09_img01_836x471.webp" alt="The Ivy" loading="lazy"></div>
-        <div class="vg-cell"><img src="veloura-imgs/p10_img01_836x471.webp" alt="The Ivy evening" loading="lazy"></div>
-        <div class="vg-cell"><img src="veloura-imgs/p10_img03_922x615.webp" alt="The Ivy dining" loading="lazy"></div>
+        <div class="vg-cell active"><img src="veloura-imgs/p09_img01_836x471.webp" alt="Celestia" loading="lazy"></div>
+        <div class="vg-cell"><img src="veloura-imgs/p10_img01_836x471.webp" alt="Celestia evening" loading="lazy"></div>
+        <div class="vg-cell"><img src="veloura-imgs/p10_img03_922x615.webp" alt="Celestia dining" loading="lazy"></div>
       </div>
       <div class="venue-meta">
-        <h3 class="venue-name">The Ivy</h3>
+        <h3 class="venue-name">Celestia</h3>
         <p class="venue-sub">Dining Hall</p>
         <div class="venue-divider"></div>
-        <p class="venue-desc">Designed to bring people together through memorable dining experiences, The Ivy is an elegant dining hall where contemporary architecture meets warmth and comfort. Surrounded by expansive glass panels, it offers a seamless blend of indoor sophistication and open-air charm.</p>
+        <p class="venue-desc">Designed to bring people together through memorable dining experiences, Celestia is an elegant dining hall where contemporary architecture meets warmth and comfort. Surrounded by expansive glass panels, it offers a seamless blend of indoor sophistication and open-air charm.</p>
         <div class="venue-divider"></div>
         <div class="venue-specs">
           <div class="spec-row"><span class="spec-label">Setting</span><span class="spec-val">Indoor Dining</span></div>
@@ -1059,11 +1490,12 @@ ul { list-style: none; }
         Thadampaattuthazham Road, Thadampattuthazham<br>
         Kozhikode, Kerala — 673010<br><br>
         <a href="https://wa.me/919746442717">+91 97464 42717</a><br>
-        <a href="mailto:hello@velouraconventioncentre.com" style="color:var(--muted);">hello@velouraconventioncentre.com</a>
+        <a href="mailto:hello@velouraconventioncentre.com" style="color:var(--muted);">hello@velouraconventioncentre.com</a><br><br>
+        <a href="https://maps.app.goo.gl/S68YqSEtho5qtZQz7" target="_blank" rel="noopener" style="color:var(--gold);font-size:9.5px;letter-spacing:0.22em;text-transform:uppercase;">Get Directions →</a>
       </p>
     </div>
     <div class="reveal d2">
-      <div class="map-block">
+      <a href="https://maps.app.goo.gl/S68YqSEtho5qtZQz7" target="_blank" rel="noopener" class="map-block" aria-label="Open in Google Maps">
         <div class="map-dots"></div>
         <div class="map-pin-wrap">
           <div class="map-dot"></div>
@@ -1072,8 +1504,8 @@ ul { list-style: none; }
             <p class="map-card-tag">Convention Centre · Kozhikode</p>
           </div>
         </div>
-        <p class="map-note">Thadampattuthazham · Kozhikode</p>
-      </div>
+        <p class="map-note">Tap to open in Google Maps</p>
+      </a>
     </div>
   </div>
 </section>
@@ -1107,7 +1539,8 @@ ul { list-style: none; }
         Le Veloura Convention Centre<br>
         Thadampaattuthazham Road, Thadampattuthazham<br>
         Kozhikode, Kerala — 673010<br><br>
-        35 mins from Calicut Airport
+        35 mins from Calicut Airport<br><br>
+        <a href="https://maps.app.goo.gl/S68YqSEtho5qtZQz7" target="_blank" rel="noopener" style="color:var(--gold2);">Get Directions →</a>
       </p>
     </div>
     <div>

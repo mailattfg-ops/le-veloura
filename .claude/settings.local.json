@@ -11,7 +11,9 @@
       "Bash(where cwebp *)",
       "Bash(where magick *)",
       "Bash(where ffmpeg *)",
-      "Bash(python3 -c \"from PIL import Image; print\\('pillow ok'\\)\")"
+      "Bash(python3 -c \"from PIL import Image; print\\('pillow ok'\\)\")",
+      "Bash(del _inject.py)",
+      "Bash(del _svg2.py)"
     ]
   }
 }
