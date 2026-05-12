@@ -262,9 +262,10 @@ ul { list-style: none; }
 .sov-name {
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(13px, 1.2vw, 17px);
-  font-weight: 700; letter-spacing: 0.2em;
+  font-weight: 700; letter-spacing: 0.1em;
   text-transform: uppercase; color: var(--burgundy);
   margin-bottom: 9px;
+  white-space: nowrap;
 }
 .sov-sub {
   font-size: clamp(13px, 1.05vw, 15px);
@@ -327,7 +328,7 @@ ul { list-style: none; }
 }
 .spec-row {
   font-family: var(--sans);
-  font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text);
+  font-size: clamp(11px, 1vw, 12px); text-transform: uppercase; letter-spacing: 0.1em; color: var(--text);
 }
 .spec-label { display: none; }
 .spec-val { color: var(--text); }
@@ -668,7 +669,6 @@ ul { list-style: none; }
   .intro-wrap { grid-template-columns: 1fr; gap: 28px; }
 
   .hero-features { gap: 16px 24px; }
-  .venue-specs { display: none; }
 /* media strip removed */
   .feat-grid { grid-template-columns: 1fr 1fr; }
   .photo-head-row { grid-template-columns: 1fr; gap: 20px; }
