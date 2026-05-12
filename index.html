@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Veloura — Where Every Celebration Finds Its Space</title>
+<meta name="description" content="Le Veloura Convention Centre — A premium 1.5-acre event destination near Calicut, Kerala.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Italiana&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+
+/* ── RESET ─────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; overflow-x: hidden; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: #fff;
+  color: #181410;
+  overflow-x: hidden;
+}
+img { display: block; width: 100%; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+/* ── TOKENS ─────────────────────────────────── */
+:root {
+  --white:  #ffffff;
+  --off:    #faf8f4;
+  --beige:  #f2ece2;
+  --sand:   #e6ddd0;
+  --sage:   #e9ece4;
+  --dusty:  #e5dbd5;
+  --burgundy: #7a3333;
+  --line:   #ddd6ca;
+  --gold:   #9e7538;
+  --gold2:  #c09050;
+  --text:   #181410;
+  --muted:  #6a6056;
+  --light:  #a09080;
+  --px:     clamp(24px, 5.5vw, 80px);
+  --py:     clamp(72px, 9vw, 130px);
+}
+
+/* ── PROGRESS ───────────────────────────────── */
+#progress {
+  position: fixed; top: 0; left: 0; height: 1.5px;
+  width: 0%; background: var(--gold2); z-index: 9999;
+  transition: width 0.08s linear; pointer-events: none;
+}
+
+/* ── NAV ─────────────────────────────────────── */
+#nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 24px var(--px);
+  transition: padding 0.45s ease, background 0.5s ease, box-shadow 0.4s ease;
+}
+#nav.scrolled {
+  padding: 14px var(--px);
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 1px 0 var(--line);
+}
+.nav-logo { display: flex; align-items: center; gap: 11px; }
+.nav-logo-img {
+  width: 36px; height: 36px; object-fit: contain;
+  filter: drop-shadow(0 0 6px rgba(192,144,80,0.4));
+}
+.nav-brand-name {
+  font-family: 'Italiana', serif; font-size: 17px;
+  letter-spacing: 0.1em; color: #fff; transition: color 0.4s; line-height: 1;
+}
+#nav.scrolled .nav-brand-name { color: var(--text); }
+.nav-brand-sub {
+  font-size: 8px; letter-spacing: 0.3em; text-transform: uppercase;
+  color: rgba(255,255,255,0.5); transition: color 0.4s; margin-top: 3px;
+}
+#nav.scrolled .nav-brand-sub { color: var(--light); }
+
+.nav-links { display: flex; align-items: center; gap: 34px; }
+.nav-link {
+  font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(255,255,255,0.78); transition: color 0.3s;
+}
+.nav-link:hover { color: var(--gold2); }
+#nav.scrolled .nav-link { color: var(--muted); }
+#nav.scrolled .nav-link:hover { color: var(--gold); }
+
+.nav-enquiry {
+  font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(255,255,255,0.85); border: 1px solid rgba(255,255,255,0.35);
+  padding: 10px 22px; transition: all 0.3s;
+  min-height: 44px; display: inline-flex; align-items: center;
+}
+.nav-enquiry:hover { background: var(--gold); border-color: var(--gold); color: #fff; }
+#nav.scrolled .nav-enquiry { color: var(--text); border-color: var(--line); }
+#nav.scrolled .nav-enquiry:hover { background: var(--gold); border-color: var(--gold); color: #fff; }
+
+.nav-ham {
+  display: none; flex-direction: column; gap: 5px;
+  background: none; border: none; cursor: pointer; padding: 8px;
+  min-height: 44px; min-width: 44px; align-items: center; justify-content: center;
+}
+.nav-ham span { display: block; width: 24px; height: 1px; background: #fff; transition: all 0.3s; }
+#nav.scrolled .nav-ham span { background: var(--text); }
+
+/* Mobile */
+#mob-menu {
+  position: fixed; inset: 0; background: var(--text); z-index: 998;
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 28px;
+  opacity: 0; pointer-events: none; transition: opacity 0.4s;
+}
+#mob-menu.open { opacity: 1; pointer-events: all; }
+#mob-menu a {
+  font-family: 'Cormorant Garamond', serif; font-size: 26px;
+  color: var(--off); letter-spacing: 0.08em; transition: color 0.3s;
+}
+#mob-menu a:hover { color: var(--gold2); }
+.mob-close {
+  position: absolute; top: 16px; right: 20px;
+  background: none; border: none; color: rgba(255,255,255,0.4);
+  font-size: 22px; cursor: pointer;
+  min-height: 44px; min-width: 44px; display: flex; align-items: center; justify-content: center;
+}
+
+/* ── HERO ─────────────────────────────────────── */
+#hero {
+  position: relative; width: 100%; height: 100vh; min-height: 640px;
+  overflow: hidden; display: flex; align-items: flex-end;
+}
+.hero-img {
+  position: absolute; inset: 0;
+  background: url('veloura-imgs/p02_img02_1000x772.jpeg') center/cover no-repeat;
+  animation: kb 20s ease-in-out infinite alternate;
+}
+@keyframes kb { from { transform: scale(1); } to { transform: scale(1.05); } }
+.hero-scrim {
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(14,10,6,0.88) 0%,
+    rgba(14,10,6,0.2) 52%,
+    rgba(14,10,6,0.35) 100%
+  );
+}
+.hero-content {
+  position: relative; z-index: 2; width: 100%;
+  padding: 0 var(--px) 64px;
+}
+.hero-eyebrow {
+  font-size: 9.5px; letter-spacing: 0.34em; text-transform: uppercase;
+  color: #fff; margin-bottom: 20px;
+}
+.hero-h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(50px, 7.8vw, 112px);
+  font-weight: 300; line-height: 1.03; color: #fff;
+  letter-spacing: -0.01em; max-width: 860px;
+}
+.hero-h1 em { font-style: italic; color: var(--gold2); }
+.hero-foot {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  margin-top: 32px; padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.1); gap: 20px;
+}
+.hero-features {
+  display: flex; gap: 20px 32px; max-width: 680px; flex-wrap: wrap;
+}
+.hf-item {
+  display: flex; align-items: center; gap: 10px;
+}
+.hf-icon {
+  width: 18px; height: 18px; color: var(--gold2);
+}
+.hf-text {
+  font-size: 11px; color: rgba(255,255,255,0.85); font-weight: 300; letter-spacing: 0.08em; text-transform: uppercase;
+}
+.hero-actions { display: flex; gap: 14px; flex-shrink: 0; flex-wrap: wrap; }
+.btn-light {
+  font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: #fff; border: 1px solid rgba(255,255,255,0.35);
+  padding: 12px 28px; transition: all 0.3s; white-space: nowrap;
+  min-height: 44px; display: inline-flex; align-items: center; justify-content: center;
+}
+.btn-light:hover { background: var(--gold); border-color: var(--gold); color: #fff; }
+.btn-gold {
+  font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase;
+  background: var(--gold); color: #fff; padding: 12px 28px;
+  border: 1px solid transparent; transition: background 0.3s; white-space: nowrap;
+  min-height: 44px; display: inline-flex; align-items: center; justify-content: center;
+}
+.btn-gold:hover { background: #7d5c28; }
+
+/* ── INTRO ───────────────────────────────────── */
+#intro { padding: var(--py) var(--px); background: var(--white); border-bottom: 1px solid var(--line); }
+.intro-wrap {
+  max-width: 1180px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end;
+}
+.intro-label { font-size: 9.5px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; }
+.intro-h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(30px, 3.5vw, 50px); font-weight: 300;
+  line-height: 1.18; color: var(--text);
+}
+.intro-h2 em { font-style: italic; color: var(--gold); }
+.intro-body { font-size: 14.5px; line-height: 1.92; color: var(--muted); }
+.intro-body p + p { margin-top: 14px; }
+.intro-pills { display: flex; gap: 10px; margin-top: 32px; flex-wrap: wrap; }
+.pill {
+  font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+  border: 1px solid var(--line); color: var(--light); padding: 8px 18px;
+}
+
+/* full-width image */
+.fw-img { width: 100%; overflow: hidden; border-top: 1px solid var(--line); }
+.fw-img img {
+  width: 100%; display: block; max-height: 600px; object-fit: cover;
+  transition: transform 1.2s cubic-bezier(0.2,0.8,0.2,1);
+}
+.fw-img:hover img { transform: scale(1.02); }
+
+/* ── SPACES ──────────────────────────────────── */
+#spaces { background: var(--white); }
+
+.spaces-intro {
+  padding: var(--py) var(--px) 60px;
+  border-bottom: 1px solid var(--line);
+  display: flex; justify-content: space-between; align-items: flex-end; gap: 40px;
+}
+.spaces-label { font-size: 9.5px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+.spaces-h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(28px, 3.8vw, 54px); font-weight: 300;
+  line-height: 1.12; color: var(--text); max-width: 540px;
+}
+.spaces-count { font-family: 'Cormorant Garamond', serif; font-size: 13px; font-style: italic; color: var(--light); flex-shrink: 0; }
+
+/* ── SPACES GRID (amitarasa pattern) ─────────── */
+.spaces-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 80px 56px;
+  max-width: 1400px;
+  margin: 60px auto clamp(80px, 10vw, 140px);
+  padding: 0 var(--px);
+}
+.venue-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.venue-meta {
+  flex: 1;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.venue-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+.venue-sub {
+  font-family: var(--sans);
+  font-size: 14px; color: var(--text); font-weight: 300;
+  letter-spacing: 0.02em;
+}
+.venue-divider {
+  width: 100%; height: 1px; background: var(--line); margin: 24px 0;
+}
+.venue-desc {
+  flex: 1;
+  font-size: 13.5px; line-height: 1.75; color: var(--text); margin-bottom: 0px;
+}
+.venue-specs {
+  display: flex; flex-direction: column; gap: 8px;
+}
+.spec-row {
+  font-family: var(--sans);
+  font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text);
+}
+.spec-label { display: none; }
+.spec-val { color: var(--text); }
+
+/* venue single-image slider */
+.venue-gallery {
+  width: 100%;
+  aspect-ratio: 4/5;
+  position: relative;
+  background: var(--sand); overflow: hidden;
+  margin-bottom: 24px;
+}
+.vg-cell {
+  position: absolute; inset: 0; opacity: 0;
+  transition: opacity 1.5s ease-in-out, transform 8s linear;
+  transform: scale(1); pointer-events: none;
+}
+.vg-cell.active {
+  opacity: 1; transform: scale(1.03); z-index: 2; pointer-events: auto;
+}
+.vg-cell img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+@media (max-width: 1024px) {
+  .spaces-grid { gap: 60px 24px; }
+  .venue-gallery { aspect-ratio: 1/1; }
+}
+@media (max-width: 640px) {
+  .spaces-grid { grid-template-columns: 1fr; gap: 60px; }
+  .venue-gallery { aspect-ratio: 4/3; }
+}
+
+/* ── GALLERY CONTROLS ───────────────────────── */
+.venue-gallery { position: relative; }
+.vg-controls {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 5;
+}
+.venue-gallery:hover .vg-controls {
+  opacity: 1;
+  pointer-events: auto;
+}
+.vg-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.vg-btn:hover {
+  background: rgba(255,255,255,0.3);
+  transform: scale(1.1);
+}
+.vg-btn svg { width: 20px; height: 20px; }
+
+/* ── IMAGE STRIP REMOVED FOR CLEANER AESTHETIC ── */
+
+/* ── CULINARY NOTE ───────────────────────────── */
+.culinary-note {
+  max-width: 900px;
+  margin: 80px auto;
+  text-align: center;
+  padding: 0 var(--px);
+}
+.cul-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(24px, 3vw, 36px);
+  color: var(--burgundy);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 24px;
+}
+.cul-desc {
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--text);
+  font-weight: 300;
+}
+
+/* ── PHOTOGRAPHY ─────────────────────────────── */
+#photo-section { background: var(--dusty); border-top: 1px solid var(--line); padding: var(--py) 0 var(--py); text-align: center; }
+
+.photo-head-wrap {
+  max-width: 800px; margin: 0 auto 60px; padding: 0 var(--px);
+}
+.photo-label { font-size: 9.5px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+.photo-diamond { width: 6px; height: 6px; background: var(--burgundy); transform: rotate(45deg); margin: 0 auto 20px; }
+.photo-h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(32px, 4vw, 54px); font-weight: 300; color: var(--text); line-height: 1.15;
+  text-transform: uppercase; margin-bottom: 24px;
+}
+.photo-graphic { color: var(--burgundy); margin: 30px auto 40px; display: flex; justify-content: center; }
+.photo-graphic svg { width: 140px; height: auto; stroke-width: 0.8; }
+.photo-body { font-size: 14.5px; line-height: 1.8; color: var(--text); font-weight: 300; }
+
+.photo-attrs-bg { margin-bottom: 0; }
+.photo-attrs {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  max-width: 1200px; margin: 0 auto; padding: 0 var(--px);
+}
+.pa-item { 
+  display: flex; flex-direction: column; align-items: center; text-align: center; 
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); 
+}
+.pa-item:hover { transform: translateY(-6px); }
+.pa-icon { width: 56px; height: 56px; color: var(--burgundy); margin-bottom: 20px; }
+.pa-icon svg { width: 100%; height: 100%; stroke-width: 1.1; }
+.pa-title { 
+  font-family: 'Cormorant Garamond', serif; 
+  font-size: 14px; font-weight: 500; color: var(--burgundy); 
+  text-transform: uppercase; letter-spacing: 0.1em; 
+  margin-bottom: 8px; 
+}
+.pa-sub { font-family: var(--sans); font-size: 12.5px; color: var(--text); }
+
+.photo-divider { width: 100%; max-width: 1200px; height: 1px; background: rgba(122, 51, 51, 0.3); margin: 0 auto 60px; }
+
+/* Story grid: elegant 4-column row */
+.photo-story {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 24px; max-width: 1600px; margin: 0 auto 100px; padding: 0 var(--px);
+}
+.ps-cell { overflow: hidden; }
+.ps-cell img {
+  width: 100%; height: 100%; object-fit: cover; display: block; aspect-ratio: 4/5;
+  transition: transform 1s cubic-bezier(0.2,0.8,0.2,1), filter 0.45s;
+  filter: brightness(0.93);
+}
+.ps-cell:hover img { transform: scale(1.05); filter: brightness(1); }
+
+/* ── CTA BANNER ──────────────────────────────── */
+#cta-banner {
+  position: relative; min-height: 520px;
+  display: flex; align-items: center; justify-content: center; overflow: hidden;
+}
+.cta-bg {
+  position: absolute; inset: 0;
+  background: url('veloura-imgs/p07_img01_902x512.jpeg') center/cover no-repeat;
+}
+.cta-scrim { position: absolute; inset: 0; background: rgba(12,8,4,0.7); }
+.cta-inner {
+  position: relative; z-index: 2;
+  text-align: center; padding: 0 var(--px); max-width: 740px;
+}
+.cta-eyebrow { font-size: 9.5px; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(255,255,255,0.38); margin-bottom: 18px; }
+.cta-h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(32px, 5vw, 70px); font-weight: 300;
+  color: #fff; line-height: 1.1; margin-bottom: 12px;
+}
+.cta-h2 em { font-style: italic; color: var(--gold2); }
+.cta-sub {
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-size: 17px; font-weight: 300; color: rgba(255,255,255,0.5);
+  margin-bottom: 40px; line-height: 1.65;
+}
+.cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.btn-gold-fill { font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase; background: var(--gold); color: #fff; padding: 13px 34px; transition: background 0.3s; border: 1px solid transparent; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+.btn-gold-fill:hover { background: #7d5c28; }
+.btn-ghost-w { font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.85); padding: 13px 34px; border: 1px solid rgba(255,255,255,0.3); transition: all 0.3s; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+.btn-ghost-w:hover { background: var(--dusty); border-color: var(--dusty); color: var(--text); }
+
+/* ── CULINARY ────────────────────────────────── */
+#culinary { display: grid; grid-template-columns: 1fr 1fr; min-height: 580px; border-top: 1px solid var(--line); }
+.cul-img { overflow: hidden; }
+.cul-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.1s ease; }
+.cul-img:hover img { transform: scale(1.04); }
+.cul-body {
+  background: var(--off); padding: clamp(56px,7vw,100px) clamp(44px,5.5vw,76px);
+  display: flex; flex-direction: column; justify-content: center;
+}
+.cul-rule { width: 34px; height: 1px; background: var(--gold); margin-bottom: 24px; }
+.cul-label { font-size: 9.5px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+.cul-h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(26px,3vw,44px); font-weight: 300;
+  color: var(--text); line-height: 1.18; margin-bottom: 6px;
+}
+.cul-h2 em { font-style: italic; color: var(--gold); display: block; }
+.cul-text { font-size: 14px; line-height: 1.9; color: var(--muted); margin: 20px 0 34px; }
+.cul-list { display: flex; flex-direction: column; gap: 0; }
+.cul-row {
+  display: flex; gap: 14px; font-size: 13.5px; color: var(--muted); line-height: 1.6;
+  padding: 14px 0; border-bottom: 1px solid var(--line);
+}
+.cul-row:last-child { border-bottom: none; }
+.cul-row::before { content: ''; display: block; width: 1px; height: 38px; background: var(--gold2); flex-shrink: 0; margin-top: 1px; }
+.cul-row strong { display: block; font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 1px; }
+
+/* ── GALLERY ─────────────────────────────────── */
+#gallery { background: var(--beige); padding: var(--py) var(--px); border-top: 1px solid var(--line); }
+.gal-head { margin-bottom: 52px; text-align: center; }
+.gal-label { font-size: 9.5px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; display: inline-block; }
+.gal-h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px,3.3vw,48px); font-weight: 300; color: var(--text); }
+
+.gal-slider {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  background: var(--sand);
+}
+
+.gal-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.8s ease-in-out, transform 8s linear;
+  transform: scale(1);
+}
+
+.gal-slide.active {
+  opacity: 1;
+  transform: scale(1.05);
+  z-index: 2;
+}
+
+.gal-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.gal-controls {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 40px;
+}
+
+.gal-dot {
+  width: 30px;
+  height: 2px;
+  background: rgba(158, 117, 56, 0.3);
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.gal-dot.active {
+  background: var(--gold);
+  width: 50px;
+}
+
+@media (max-width: 768px) {
+  .gal-slider { aspect-ratio: 4/5; }
+}
+
+/* ── LOCATION ────────────────────────────────── */
+#location { background: var(--white); padding: var(--py) var(--px); border-top: 1px solid var(--line); }
+.loc-wrap { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 90px; align-items: start; }
+.loc-label { font-size: 9.5px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+.loc-h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(26px,3vw,44px); font-weight: 300; color: var(--text); line-height: 1.2; margin-bottom: 36px; }
+.loc-rows { margin-bottom: 34px; }
+.loc-row { display: flex; justify-content: space-between; align-items: baseline; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.loc-row:first-child { border-top: 1px solid var(--line); }
+.loc-place { font-family: 'Cormorant Garamond', serif; font-size: 17px; color: var(--text); }
+.loc-time { font-size: 9px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); font-weight: 500; }
+.loc-addr { font-size: 13.5px; line-height: 1.88; color: var(--muted); }
+.loc-addr a { color: var(--gold); }
+
+.map-block { background: var(--beige); border: 1px solid var(--line); aspect-ratio: 1; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+.map-dots { position: absolute; inset: 0; pointer-events: none; background-image: radial-gradient(var(--line) 1px, transparent 1px); background-size: 26px 26px; }
+.map-pin-wrap { position: relative; z-index: 2; text-align: center; }
+.map-dot { width: 11px; height: 11px; background: var(--gold); border-radius: 50%; margin: 0 auto 14px; animation: pdot 2.5s ease-in-out infinite; }
+@keyframes pdot { 0%,100% { box-shadow: 0 0 0 0 rgba(158,117,56,0.5); } 50% { box-shadow: 0 0 0 14px rgba(158,117,56,0); } }
+.map-card { background: var(--text); color: #fff; padding: 14px 28px; }
+.map-card-name { font-family: 'Italiana', serif; font-size: 16px; letter-spacing: 0.08em; }
+.map-card-tag { font-size: 8.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold2); margin-top: 2px; }
+.map-note { position: absolute; bottom: 18px; font-size: 8.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--light); }
+
+/* ── FOOTER ──────────────────────────────────── */
+#footer { background: var(--text); padding: 68px var(--px) 34px; border-top: 1px solid rgba(255,255,255,0.05); }
+.foot-grid {
+  max-width: 1180px; margin: 0 auto;
+  display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 52px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.foot-name { font-family: 'Italiana', serif; font-size: 18px; letter-spacing: 0.08em; color: #fff; margin-bottom: 3px; }
+.foot-sub { font-size: 8px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.22); margin-bottom: 14px; }
+.foot-tagline { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 14px; color: rgba(255,255,255,0.32); line-height: 1.65; }
+.foot-col-title { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; font-weight: 500; }
+.foot-links { display: flex; flex-direction: column; gap: 10px; }
+.foot-links a { font-size: 13px; color: rgba(255,255,255,0.36); transition: color 0.3s; }
+.foot-links a:hover { color: rgba(255,255,255,0.78); }
+.foot-addr { font-size: 13px; color: rgba(255,255,255,0.32); line-height: 1.85; }
+.foot-addr a { color: var(--gold2); }
+.foot-bottom { max-width: 1180px; margin: 26px auto 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+.foot-copy { font-size: 11px; color: rgba(255,255,255,0.16); letter-spacing: 0.06em; }
+.foot-craft { font-size: 9.5px; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(255,255,255,0.12); }
+
+/* ── FAB ─────────────────────────────────────── */
+#fab {
+  position: fixed; bottom: 34px; right: 34px; z-index: 990;
+  width: 52px; height: 52px; background: var(--gold); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.18); 
+  transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  opacity: 0; pointer-events: none; transform: translateY(20px) scale(0.9);
+}
+#fab.visible { opacity: 1; pointer-events: all; transform: translateY(0) scale(1); }
+#fab:hover { transform: translateY(-4px) scale(1.05); background: #7d5c28; box-shadow: 0 12px 40px rgba(0,0,0,0.24); }
+#fab svg { width: 22px; height: 22px; }
+
+/* ── REVEAL ──────────────────────────────────── */
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity 1s ease, transform 1s cubic-bezier(0.16,1,0.3,1); }
+.reveal.on { opacity: 1; transform: none; }
+.d1 { transition-delay: 0.1s; }
+.d2 { transition-delay: 0.22s; }
+.d3 { transition-delay: 0.34s; }
+
+/* ── RESPONSIVE ──────────────────────────────── */
+@media (max-width: 1024px) {
+  .nav-links { display: none; }
+  .nav-enquiry { display: none; }
+  .nav-ham { display: flex; }
+  .intro-wrap { grid-template-columns: 1fr; gap: 28px; }
+  .spaces-intro { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .hero-features { gap: 16px 24px; }
+  .venue-specs { display: none; }
+/* media strip removed */
+  .feat-grid { grid-template-columns: 1fr 1fr; }
+  .photo-head-row { grid-template-columns: 1fr; gap: 20px; }
+  .photo-story { grid-template-columns: 1fr 1fr; }
+  .ps-cell img { aspect-ratio: 4/3; height: auto; }
+  .photo-attrs { grid-template-columns: 1fr 1fr; }
+  #culinary { grid-template-columns: 1fr; }
+  .cul-img { min-height: 360px; }
+/* media gal-grid removed */
+  .loc-wrap { grid-template-columns: 1fr; gap: 48px; }
+  .foot-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+}
+
+@media (max-width: 768px) {
+  .spaces-grid { grid-template-columns: 1fr 1fr; gap: 48px 24px; }
+  #cta-banner { min-height: 460px; }
+  .cta-inner { padding: 60px var(--px); }
+  .map-block { aspect-ratio: 4/3; }
+}
+
+@media (max-width: 640px) {
+  .hero-content { padding-bottom: 48px; }
+  .hero-h1 { line-height: 1.1; margin-bottom: 30px; }
+  .hero-foot { flex-direction: column; align-items: flex-start; gap: 28px; }
+  .hero-features { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; width: 100%; }
+  .hero-actions { width: 100%; }
+  .hero-actions a { width: 100%; text-align: center; justify-content: center; }
+
+  .culinary-note { margin: 40px auto; }
+  .cul-title { font-size: 22px; }
+  .cul-desc { font-size: 14.5px; }
+
+  .vg-controls { opacity: 1; pointer-events: auto; padding: 0 10px; }
+  .vg-btn { width: 32px; height: 32px; }
+
+  .feat-grid { grid-template-columns: 1fr; }
+  .photo-story { grid-template-columns: 1fr; }
+  .photo-attrs { grid-template-columns: 1fr 1fr; }
+  .cta-btns { flex-direction: column; align-items: center; width: 100%; }
+  .cta-btns a { width: 100%; text-align: center; justify-content: center; }
+  .foot-grid { grid-template-columns: 1fr; gap: 30px; }
+  #fab { bottom: 20px; right: 20px; width: 44px; height: 44px; }
+  .spaces-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .spaces-grid { grid-template-columns: 1fr; gap: 48px; }
+  .photo-story { grid-template-columns: 1fr; }
+  .photo-attrs { grid-template-columns: 1fr; }
+  .hero-features { grid-template-columns: 1fr; }
+  .gal-dot { width: 20px; }
+  .gal-dot.active { width: 36px; }
+  .hero-h1 { font-size: clamp(36px, 11vw, 54px); }
+  .cta-h2 { font-size: clamp(26px, 8vw, 40px); }
+  .foot-grid { grid-template-columns: 1fr; }
+  #nav { padding: 18px var(--px); }
+  #nav.scrolled { padding: 12px var(--px); }
+  .btn-light, .btn-gold, .btn-gold-fill, .btn-ghost-w { padding: 14px 20px; font-size: 11px; }
+  .map-block { aspect-ratio: 1/1; }
+}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<!-- Mobile -->
+<div id="mob-menu">
+  <button class="mob-close" id="mob-close">&#x2715;</button>
+  <a href="#intro">About</a>
+  <a href="#spaces">Spaces</a>
+  <a href="#photo-section">Photography</a>
+  <a href="#gallery">Gallery</a>
+  <a href="#location">Location</a>
+  <a href="https://wa.me/919999999999" style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold2);margin-top:6px;">Make an Enquiry</a>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <img class="nav-logo-img" src="veloura-imgs/logo-transparent.png" alt="Le Veloura">
+    <div>
+      <div class="nav-brand-name">Le VELOURA</div>
+      <div class="nav-brand-sub">Convention Centre</div>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="#intro"         class="nav-link">About</a>
+    <a href="#spaces"        class="nav-link">Spaces</a>
+    <a href="#photo-section" class="nav-link">Photography</a>
+    <a href="#gallery"       class="nav-link">Gallery</a>
+    <a href="#location"      class="nav-link">Location</a>
+  </div>
+  <a href="https://wa.me/919999999999" class="nav-enquiry">Make an Enquiry</a>
+  <button class="nav-ham" id="nav-ham"><span></span><span></span><span></span></button>
+</nav>
+
+
+<!-- ════════════════════════════════
+     HERO
+════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-img"></div>
+  <div class="hero-scrim"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">A Premium Event Destination &nbsp;·&nbsp; Near Calicut, Kerala</p>
+    <h1 class="hero-h1">
+      Where every<br>
+      <em>celebration</em><br>
+      finds its space.
+    </h1>
+    <div class="hero-foot">
+      <div class="hero-features">
+        <div class="hf-item">
+          <div class="hf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+          <span class="hf-text">Three Air-Conditioned Halls</span>
+        </div>
+        <div class="hf-item">
+          <div class="hf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <span class="hf-text">Bride &amp; Groom Suites</span>
+        </div>
+        <div class="hf-item">
+          <div class="hf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="13" r="4"/><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V8a2 2 0 012-2h3l2-3h6l2 3h3a2 2 0 012 2z"/></svg></div>
+          <span class="hf-text">Photography Spaces</span>
+        </div>
+        <div class="hf-item">
+          <div class="hf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 20h20M5 20V4l7 3 7-3v16M9 20V12h6v8"/></svg></div>
+          <span class="hf-text">1.5-Acre Open Estate</span>
+        </div>
+        <div class="hf-item">
+          <div class="hf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-1.1 0-2 .9-2 2v7c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg></div>
+          <span class="hf-text">Ample On-Site Parking</span>
+        </div>
+      </div>
+      <div class="hero-actions">
+        <a href="#spaces" class="btn-light">Explore Spaces</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════
+     INTRO
+════════════════════════════════ -->
+<section id="intro">
+  <div class="intro-wrap">
+    <div class="reveal">
+      <p class="intro-label">The Estate</p>
+      <h2 class="intro-h2">
+        More than a venue —<br>
+        <em>a setting for the moments</em><br>
+        you'll remember.
+      </h2>
+    </div>
+    <div class="reveal d2">
+      <div class="intro-body">
+        <p>Le Veloura was envisioned as a place where every celebration is held with equal reverence — where the grandeur of a wedding morning and the warmth of a family gathering both feel entirely at home. Set across a generous 1.5-acre estate near Calicut, the property offers four distinct spaces, each designed with intention.</p>
+        <p>Positioned just off NH 66 and a comfortable 35-minute drive from Calicut International Airport, Le Veloura blends the ease of accessibility with the seclusion of a private retreat.</p>
+      </div>
+      <div class="intro-pills">
+        <span class="pill">1.5 Acre Estate</span>
+        <span class="pill">Near NH 66</span>
+        <span class="pill">35 Min from Airport</span>
+        <span class="pill">Four Distinct Spaces</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="fw-img reveal">
+  <img src="veloura-imgs/p03_img01_1004x565.jpeg" alt="Le Veloura Entrance" loading="lazy">
+</div>
+
+
+<!-- ════════════════════════════════
+     SPACES
+════════════════════════════════ -->
+<section id="spaces">
+
+  <div class="spaces-intro">
+    <div class="reveal">
+      <p class="spaces-label">The Spaces</p>
+      <h2 class="spaces-h2">All the room you need,<br>for everything you imagine.</h2>
+    </div>
+    <p class="spaces-count reveal d2">Four Distinct Spaces</p>
+  </div>
+
+
+  <div class="spaces-grid">
+    <!-- I. GRAND HALL -->
+    <div class="venue-block reveal">
+      <div class="venue-gallery">
+        <div class="vg-controls">
+          <button class="vg-btn prev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+          <button class="vg-btn next" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+        </div>
+        <div class="vg-cell active"><img src="veloura-imgs/p11_img01_1004x565.png" alt="The Grand Hall" loading="lazy"></div>
+        <div class="vg-cell"><img src="veloura-imgs/p11_img02_924x426.jpeg" alt="The Grand Hall corridor" loading="lazy"></div>
+        <div class="vg-cell"><img src="veloura-imgs/p15_img01_922x506.jpeg" alt="The Grand Hall ambience" loading="lazy"></div>
+      </div>
+      <div class="venue-meta">
+        <h3 class="venue-name">Aurelius</h3>
+        <p class="venue-sub">The Signature Celebration Space</p>
+        <div class="venue-divider"></div>
+        <p class="venue-desc">Spacious, elegant, and designed to host celebrations at the grandest scale, the Aurelius is the heart of the convention centre — a premium venue crafted for unforgettable weddings, corporate gatherings, and luxury celebrations.</p>
+        <div class="venue-divider"></div>
+        <div class="venue-specs">
+          <div class="spec-row"><span class="spec-label">Setting</span><span class="spec-val">Indoor Event Hall</span></div>
+          <div class="spec-row"><span class="spec-label">Capacity</span><span class="spec-val">Capacity: 800 – 1000 Guests</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- II. OPEN GARDEN -->
+    <div class="venue-block reveal d1">
+      <div class="venue-gallery">
+        <div class="vg-controls">
+          <button class="vg-btn prev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+          <button class="vg-btn next" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+        </div>
+        <div class="vg-cell active"><img src="veloura-imgs/p09_img01_836x471.png" alt="The Open Garden" loading="lazy"></div>
+        <div class="vg-cell"><img src="veloura-imgs/p10_img01_836x471.png" alt="The Open Garden at night" loading="lazy"></div>
+        <div class="vg-cell"><img src="veloura-imgs/p10_img03_922x615.png" alt="The Open Garden banquet" loading="lazy"></div>
+      </div>
+      <div class="venue-meta">
+        <h3 class="venue-name">The Promenade</h3>
+        <p class="venue-sub">Outdoor Lawn</p>
+        <div class="venue-divider"></div>
+        <p class="venue-desc">Surrounded by lush greenery, warm architectural lighting, and elegant design, The Promenade is an intimate outdoor celebration space. It creates a serene atmosphere perfect for engagement ceremonies, reception dinners, and private gatherings under the open sky.</p>
+        <div class="venue-divider"></div>
+        <div class="venue-specs">
+          <div class="spec-row"><span class="spec-label">Setting</span><span class="spec-val">Outdoor Garden</span></div>
+          <div class="spec-row"><span class="spec-label">Capacity</span><span class="spec-val">Capacity: 200 Guests</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- III. GLASS HOUSE -->
+    <div class="venue-block reveal">
+      <div class="venue-gallery">
+        <div class="vg-controls">
+          <button class="vg-btn prev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+          <button class="vg-btn next" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+        </div>
+        <div class="vg-cell active"><img src="veloura-imgs/p12_img01_1004x565.png" alt="The Glass House interior" loading="lazy"></div>
+        <div class="vg-cell"><img src="veloura-imgs/p05_img02_1007x563.png" alt="The Glass House exterior" loading="lazy"></div>
+        <div class="vg-cell"><img src="veloura-imgs/p10_img02_1005x564.png" alt="The Glass House evening" loading="lazy"></div>
+      </div>
+      <div class="venue-meta">
+        <h3 class="venue-name">The Lumiere</h3>
+        <p class="venue-sub">High Tea &amp; Lounge</p>
+        <div class="venue-divider"></div>
+        <p class="venue-desc">Elegant, intimate, and beautifully illuminated, The Lumiere is a refined celebration space. Surrounded by floor-to-ceiling glass architecture and warm chandelier lighting, the venue creates a luxurious ambience that feels both modern and timeless.</p>
+        <div class="venue-divider"></div>
+        <div class="venue-specs">
+          <div class="spec-row"><span class="spec-label">Setting</span><span class="spec-val">Indoor Lounge</span></div>
+          <div class="spec-row"><span class="spec-label">Capacity</span><span class="spec-val">Capacity: 150 Guests</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- IV. PREMIUM HALL -->
+    <div class="venue-block reveal d1">
+      <div class="venue-gallery">
+        <div class="vg-controls">
+          <button class="vg-btn prev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+          <button class="vg-btn next" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+        </div>
+        <div class="vg-cell active"><img src="veloura-imgs/p06_img01_1004x565.png" alt="The Premium Hall" loading="lazy"></div>
+        <div class="vg-cell"><img src="veloura-imgs/p06_img02_1004x565.png" alt="The Premium Hall theatre" loading="lazy"></div>
+        <div class="vg-cell"><img src="veloura-imgs/p08_img02_1007x563.png" alt="The Premium Hall interior" loading="lazy"></div>
+      </div>
+      <div class="venue-meta">
+        <h3 class="venue-name">The Ivy</h3>
+        <p class="venue-sub">Dining Hall</p>
+        <div class="venue-divider"></div>
+        <p class="venue-desc">Designed to bring people together through memorable dining experiences, The Ivy is an elegant dining hall where contemporary architecture meets warmth and comfort. Surrounded by expansive glass panels, it offers a seamless blend of indoor sophistication and open-air charm.</p>
+        <div class="venue-divider"></div>
+        <div class="venue-specs">
+          <div class="spec-row"><span class="spec-label">Setting</span><span class="spec-val">Indoor Dining</span></div>
+          <div class="spec-row"><span class="spec-label">Capacity</span><span class="spec-val">Capacity: 300 Guests</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="culinary-note reveal">
+    <h3 class="cul-title">Culinary Infrastructure</h3>
+    <p class="cul-desc">Our full-fledged commercial kitchen is at the service of caterers of your choice. We also offer priority deals with trusted catering partners to ensure every plate carries the same intention as every other detail of your event.</p>
+  </div>
+
+</section>
+
+
+<!-- IMAGE STRIP REMOVED -->
+
+
+
+
+
+<!-- ════════════════════════════════
+     PHOTOGRAPHY
+════════════════════════════════ -->
+<section id="photo-section">
+  <div class="photo-head-wrap reveal">
+    <p class="photo-label">Photography Spaces</p>
+    <div class="photo-diamond"></div>
+    <h2 class="photo-h2">Composed for creativity</h2>
+    
+    <div class="photo-graphic reveal d1">
+      <svg viewBox="0 0 200 60" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M50 50 L80 25 L110 50" />
+        <path d="M90 40 L130 10 L170 50" />
+        <circle cx="130" cy="22" r="10" />
+        <path d="M155 18 Q158 15 160 18 Q162 15 165 18" />
+        <path d="M30 50 L190 50" />
+        <path d="M60 50 L60 45 M64 50 L64 47 M68 50 L68 45" />
+        <path d="M140 50 L140 45 M144 50 L144 47 M148 50 L148 45" />
+      </svg>
+    </div>
+
+    <p class="photo-body reveal d2">Le Veloura's spaces are available for pre-wedding shoots, editorial sessions, brand campaigns, and content creation — with natural light, architectural interest, and open grounds by the hour.</p>
+  </div>
+
+  <div class="photo-story reveal d3">
+    <div class="ps-cell ps-cell-a">
+      <img src="veloura-imgs/p07_img01_902x512.jpeg" alt="Photography at Le Veloura" loading="lazy">
+    </div>
+    <div class="ps-cell ps-cell-b">
+      <img src="veloura-imgs/p15_img01_922x506.jpeg" alt="Corridor ambience" loading="lazy">
+    </div>
+    <div class="ps-cell ps-cell-c">
+      <img src="veloura-imgs/p09_img03_1006x564.jpeg" alt="Garden arch" loading="lazy">
+    </div>
+    <div class="ps-cell ps-cell-d">
+      <img src="veloura-imgs/p08_img01_1004x565.png" alt="Garden path" loading="lazy">
+    </div>
+  </div>
+
+  <div class="photo-divider reveal d2"></div>
+
+  <div class="photo-attrs-bg">
+    <div class="photo-attrs">
+      <div class="pa-item reveal">
+        <div class="pa-icon"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="14" cy="14" r="6"/><path d="M14 4L14 2M14 26L14 24M4 14L2 14M26 14L24 14"/><path d="M8 8L6 6M22 22L20 20M8 20L6 22M22 6L20 8"/></svg></div>
+        <p class="pa-title">Natural Light</p><p class="pa-sub">All day, every space</p>
+      </div>
+      <div class="pa-item reveal d1">
+        <div class="pa-icon"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><rect x="4" y="7" width="20" height="14" rx="1"/><path d="M9 7L9 4L19 4L19 7"/><circle cx="14" cy="14" r="4"/><circle cx="14" cy="14" r="1.5" fill="currentColor" stroke="none"/></svg></div>
+        <p class="pa-title">Architectural Sets</p><p class="pa-sub">Designed for the lens</p>
+      </div>
+      <div class="pa-item reveal d2">
+        <div class="pa-icon"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M4 22C4 15 9 10 14 9C19 10 24 15 24 22"/><path d="M10 22C10 17 14 14 14 14C14 14 18 17 18 22"/></svg></div>
+        <p class="pa-title">Outdoor Vignettes</p><p class="pa-sub">Garden &amp; estate backdrops</p>
+      </div>
+      <div class="pa-item reveal d3">
+        <div class="pa-icon"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="14" cy="14" r="10"/><path d="M14 7L14 14L19 17"/></svg></div>
+        <p class="pa-title">Hourly Booking</p><p class="pa-sub">Flexible, transparent pricing</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════
+     CTA
+════════════════════════════════ -->
+<section id="cta-banner">
+  <div class="cta-bg"></div>
+  <div class="cta-scrim"></div>
+  <div class="cta-inner reveal">
+    <p class="cta-eyebrow">Bookings Open This December</p>
+    <h2 class="cta-h2">Reserve your date,<br><em>begin a beautiful evening.</em></h2>
+    <p class="cta-sub">Your celebration deserves a setting that feels as considered as the occasion itself.</p>
+    <div class="cta-btns">
+      <a href="https://wa.me/919999999999?text=I'd+like+to+schedule+a+visit" class="btn-ghost-w">Schedule a Visit</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════
+     CULINARY
+════════════════════════════════ -->
+
+
+
+<!-- ════════════════════════════════
+     GALLERY
+════════════════════════════════ -->
+<section id="gallery">
+  <div class="gal-head reveal">
+    <p class="gal-label">The Visual Story</p>
+    <h2 class="gal-h2">Moments Of <em style="color:var(--gold)">Pure Elegance</em></h2>
+  </div>
+  <div class="gal-slider reveal d1" id="gal-slider">
+    <div class="gal-slide active"><img src="veloura-imgs/p14_img01_914x845.jpeg" alt="" loading="lazy"></div>
+    <div class="gal-slide"><img src="veloura-imgs/p07_img01_902x512.jpeg" alt="" loading="lazy"></div>
+    <div class="gal-slide"><img src="veloura-imgs/p10_img03_922x615.png" alt="" loading="lazy"></div>
+    <div class="gal-slide"><img src="veloura-imgs/p15_img02_923x426.jpeg" alt="" loading="lazy"></div>
+    <div class="gal-slide"><img src="veloura-imgs/p09_img02_1007x563.jpeg" alt="" loading="lazy"></div>
+    <div class="gal-slide"><img src="veloura-imgs/p02_img01_982x786.jpeg" alt="" loading="lazy"></div>
+  </div>
+  <div class="gal-controls reveal d2" id="gal-controls"></div>
+</section>
+
+
+<!-- ════════════════════════════════
+     LOCATION
+════════════════════════════════ -->
+<section id="location">
+  <div class="loc-wrap">
+    <div class="reveal">
+      <p class="loc-label">Find Us</p>
+      <h2 class="loc-h2">Situated at the heart of Kerala's celebrations.</h2>
+      <div class="loc-rows">
+        <div class="loc-row"><span class="loc-place">Calicut International Airport</span><span class="loc-time">35 min</span></div>
+        <div class="loc-row"><span class="loc-place">NH 66 — National Highway</span><span class="loc-time">Nearby</span></div>
+        <div class="loc-row"><span class="loc-place">Calicut City Centre</span><span class="loc-time">~ 50 min</span></div>
+        <div class="loc-row"><span class="loc-place">Kozhikode Railway Station</span><span class="loc-time">~ 45 min</span></div>
+      </div>
+      <p class="loc-addr">
+        Le Veloura Convention Centre Pvt. Ltd.<br>
+        Near NH 66, Kozhikode District<br>
+        Kerala — 673 XXX<br><br>
+        <a href="https://wa.me/919999999999">+91 99999 99999</a><br>
+        <a href="mailto:hello@leveloura.com" style="color:var(--muted);">hello@leveloura.com</a>
+      </p>
+    </div>
+    <div class="reveal d2">
+      <div class="map-block">
+        <div class="map-dots"></div>
+        <div class="map-pin-wrap">
+          <div class="map-dot"></div>
+          <div class="map-card">
+            <p class="map-card-name">Le VELOURA</p>
+            <p class="map-card-tag">Convention Centre · Kozhikode</p>
+          </div>
+        </div>
+        <p class="map-note">Near NH 66 · Kerala</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════
+     FOOTER
+════════════════════════════════ -->
+<footer id="footer">
+  <div class="foot-grid">
+    <div>
+      <p class="foot-name">Le VELOURA</p>
+      <p class="foot-sub">Convention Centre Pvt. Ltd.</p>
+      <p class="foot-tagline">"Where Every Celebration Finds Its Space"</p>
+    </div>
+    <div>
+      <p class="foot-col-title">Explore</p>
+      <ul class="foot-links">
+        <li><a href="#intro">The Estate</a></li>
+        <li><a href="#spaces">The Grand Hall</a></li>
+        <li><a href="#spaces">The Open Garden</a></li>
+        <li><a href="#spaces">The Glass House</a></li>
+        <li><a href="#spaces">The Premium Hall</a></li>
+        <li><a href="#photo-section">Photography</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="foot-col-title">Visit</p>
+      <p class="foot-addr">
+        Le Veloura Convention Centre<br>
+        Near NH 66, Kozhikode District<br>
+        Kerala — 673 XXX<br><br>
+        35 mins from Calicut Airport
+      </p>
+    </div>
+    <div>
+      <p class="foot-col-title">Connect</p>
+      <ul class="foot-links">
+        <li><a href="https://wa.me/919999999999">WhatsApp</a></li>
+        <li><a href="https://instagram.com/leveloura">Instagram</a></li>
+        <li><a href="mailto:hello@leveloura.com">Email Us</a></li>
+        <li><a href="tel:+919999999999">+91 99999 99999</a></li>
+        <li><a href="https://wa.me/919999999999">Make an Enquiry</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <p class="foot-copy">&copy; 2025 Le Veloura Convention Centre Pvt. Ltd. All rights reserved.</p>
+    <p class="foot-craft">Crafted with Care &nbsp;·&nbsp; Calicut</p>
+  </div>
+</footer>
+
+<a id="fab" href="https://wa.me/919999999999" aria-label="WhatsApp" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+const prog = document.getElementById('progress');
+window.addEventListener('scroll', () => {
+  const h = document.documentElement.scrollHeight - window.innerHeight;
+  prog.style.width = (h > 0 ? window.scrollY / h * 100 : 0) + '%';
+}, { passive: true });
+
+const nav = document.getElementById('nav');
+const fab = document.getElementById('fab');
+const tick = () => {
+  const scrolled = window.scrollY > 48;
+  nav.classList.toggle('scrolled', scrolled);
+  fab.classList.toggle('visible', window.scrollY > 400);
+};
+window.addEventListener('scroll', tick, { passive: true });
+tick();
+
+const ham = document.getElementById('nav-ham');
+const mob = document.getElementById('mob-menu');
+const mc  = document.getElementById('mob-close');
+ham.addEventListener('click', () => { mob.classList.add('open'); document.body.style.overflow = 'hidden'; });
+mc.addEventListener('click',  () => { mob.classList.remove('open'); document.body.style.overflow = ''; });
+mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { mob.classList.remove('open'); document.body.style.overflow = ''; }));
+
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+}, { threshold: 0.07, rootMargin: '0px 0px -48px 0px' });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
+
+// Venue Sliders Logic
+document.querySelectorAll('.venue-gallery').forEach(gallery => {
+  const slides = gallery.querySelectorAll('.vg-cell');
+  if (slides.length > 1) {
+    let current = 0;
+    let timer;
+
+    const showSlide = (index) => {
+      slides[current].classList.remove('active');
+      current = (index + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      resetTimer();
+    };
+
+    const resetTimer = () => {
+      clearInterval(timer);
+      timer = setInterval(() => showSlide(current + 1), 4500);
+    };
+
+    const prevBtn = gallery.querySelector('.prev');
+    const nextBtn = gallery.querySelector('.next');
+
+    if (prevBtn) prevBtn.addEventListener('click', (e) => { e.stopPropagation(); showSlide(current - 1); });
+    if (nextBtn) nextBtn.addEventListener('click', (e) => { e.stopPropagation(); showSlide(current + 1); });
+
+    let touchStartX = 0;
+    gallery.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    gallery.addEventListener('touchend', e => {
+      const diff = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) showSlide(current + (diff > 0 ? 1 : -1));
+    }, { passive: true });
+
+    resetTimer();
+  }
+});
+
+// Gallery Slider Logic
+const galSlides = document.querySelectorAll('.gal-slide');
+const galControls = document.getElementById('gal-controls');
+if (galSlides.length > 0 && galControls) {
+  let currentSlide = 0;
+  let slideInterval;
+  
+  galSlides.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = `gal-dot ${i === 0 ? 'active' : ''}`;
+    dot.addEventListener('click', () => goToSlide(i));
+    galControls.appendChild(dot);
+  });
+  
+  const dots = document.querySelectorAll('.gal-dot');
+  
+  function goToSlide(index) {
+    galSlides[currentSlide].classList.remove('active');
+    dots[currentSlide].classList.remove('active');
+    currentSlide = index;
+    galSlides[currentSlide].classList.add('active');
+    dots[currentSlide].classList.add('active');
+    resetInterval();
+  }
+  
+  function nextSlide() {
+    let next = (currentSlide + 1) % galSlides.length;
+    goToSlide(next);
+  }
+  
+  function resetInterval() {
+    clearInterval(slideInterval);
+    slideInterval = setInterval(nextSlide, 5000);
+  }
+
+  let galTouchStartX = 0;
+  const galEl = document.getElementById('gal-slider');
+  if (galEl) {
+    galEl.addEventListener('touchstart', e => { galTouchStartX = e.touches[0].clientX; }, { passive: true });
+    galEl.addEventListener('touchend', e => {
+      const diff = galTouchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) {
+        const next = (currentSlide + (diff > 0 ? 1 : -1) + galSlides.length) % galSlides.length;
+        goToSlide(next);
+      }
+    }, { passive: true });
+  }
+
+  resetInterval();
+}
+</script>
+</body>
+</html>
