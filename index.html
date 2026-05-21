@@ -292,6 +292,7 @@ ul { list-style: none; }
 .venue-block {
   display: flex;
   flex-direction: column;
+  scroll-margin-top: 100px;
 }
 
 .venue-meta {
@@ -924,7 +925,7 @@ ul { list-style: none; }
 
   <div class="spaces-grid">
     <!-- I. GRAND HALL -->
-    <div class="venue-block reveal">
+    <div class="venue-block reveal" id="space-aurelius">
       <div class="venue-gallery">
         <div class="vg-controls">
           <button class="vg-btn prev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
@@ -950,7 +951,7 @@ ul { list-style: none; }
     </div>
 
     <!-- II. OPEN GARDEN -->
-    <div class="venue-block reveal d1">
+    <div class="venue-block reveal d1" id="space-promenade">
       <div class="venue-gallery">
         <div class="vg-controls">
           <button class="vg-btn prev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
@@ -980,7 +981,7 @@ ul { list-style: none; }
     </div>
 
     <!-- III. GLASS HOUSE -->
-    <div class="venue-block reveal">
+    <div class="venue-block reveal" id="space-lumiere">
       <div class="venue-gallery">
         <div class="vg-controls">
           <button class="vg-btn prev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
@@ -1010,7 +1011,7 @@ ul { list-style: none; }
     </div>
 
     <!-- IV. PREMIUM HALL -->
-    <div class="venue-block reveal d1">
+    <div class="venue-block reveal d1" id="space-celestia">
       <div class="venue-gallery">
         <div class="vg-controls">
           <button class="vg-btn prev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
@@ -1219,10 +1220,10 @@ ul { list-style: none; }
       <p class="foot-col-title">Explore</p>
       <ul class="foot-links">
         <li><a href="#intro">The Estate</a></li>
-        <li><a href="#spaces">The Grand Hall</a></li>
-        <li><a href="#spaces">The Open Garden</a></li>
-        <li><a href="#spaces">The Glass House</a></li>
-        <li><a href="#spaces">The Premium Hall</a></li>
+        <li><a href="#space-aurelius">The Grand Hall</a></li>
+        <li><a href="#space-promenade">The Open Garden</a></li>
+        <li><a href="#space-lumiere">The Glass House</a></li>
+        <li><a href="#space-celestia">The Premium Hall</a></li>
         <li><a href="#photo-section">Photography</a></li>
         <li><a href="#gallery">Gallery</a></li>
       </ul>
