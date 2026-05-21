@@ -324,7 +324,7 @@ ul { list-style: none; }
   font-size: 13.5px; line-height: 1.75; color: var(--text); margin-bottom: 0px;
 }
 .venue-specs {
-  display: flex; flex-direction: column; gap: 8px; margin-top: 20px;
+  display: flex; flex-direction: column; gap: 8px;
 }
 .spec-row {
   font-family: var(--sans);
@@ -355,6 +355,25 @@ ul { list-style: none; }
 @media (max-width: 1024px) {
   .spaces-grid { gap: 60px 24px; }
   .venue-gallery { aspect-ratio: 1/1; }
+  
+  /* Flexbox order adjustments on mobile/tablet to move the second partition line below capacity specs */
+  .venue-meta {
+    display: flex;
+    flex-direction: column;
+  }
+  .venue-name { order: 1; }
+  .venue-sub { order: 2; }
+  .venue-meta > .venue-divider:nth-of-type(1) { order: 3; }
+  .venue-desc { order: 4; }
+  .venue-specs { 
+    order: 5; 
+    margin-top: 20px; /* Space before type and capacity in mobile */
+  }
+  .venue-meta > .venue-divider:nth-of-type(2) { 
+    order: 6; 
+    margin-top: 24px; /* Partition line below specs, right above the next image */
+    margin-bottom: 0;
+  }
 }
 @media (max-width: 640px) {
   .spaces-grid { grid-template-columns: 1fr; gap: 60px; }
@@ -922,11 +941,11 @@ ul { list-style: none; }
         <p class="venue-sub">The Signature Celebration Space</p>
         <div class="venue-divider"></div>
         <p class="venue-desc">Spacious, elegant, and designed to host celebrations at the grandest scale, the Aurelius is the heart of the convention centre — a premium venue crafted for unforgettable weddings, corporate gatherings, and luxury celebrations.</p>
+        <div class="venue-divider"></div>
         <div class="venue-specs">
           <div class="spec-row"><span class="spec-label">Setting</span><span class="spec-val">Indoor Event Hall</span></div>
           <div class="spec-row"><span class="spec-label">Capacity</span><span class="spec-val">Capacity: 800 – 1000 Guests</span></div>
         </div>
-        <div class="venue-divider"></div>
       </div>
     </div>
 
@@ -952,11 +971,11 @@ ul { list-style: none; }
         <p class="venue-sub">Outdoor Lawn</p>
         <div class="venue-divider"></div>
         <p class="venue-desc">Surrounded by lush greenery, warm architectural lighting, and elegant design, The Promenade is an intimate outdoor celebration space. It creates a serene atmosphere perfect for engagement ceremonies, reception dinners, and private gatherings under the open sky.</p>
+        <div class="venue-divider"></div>
         <div class="venue-specs">
           <div class="spec-row"><span class="spec-label">Setting</span><span class="spec-val">Outdoor Garden</span></div>
           <div class="spec-row"><span class="spec-label">Capacity</span><span class="spec-val">Capacity: 200 Guests</span></div>
         </div>
-        <div class="venue-divider"></div>
       </div>
     </div>
 
@@ -982,11 +1001,11 @@ ul { list-style: none; }
         <p class="venue-sub">High Tea &amp; Lounge</p>
         <div class="venue-divider"></div>
         <p class="venue-desc">Elegant, intimate, and beautifully illuminated, The Lumiere is a refined celebration space. Surrounded by floor-to-ceiling glass architecture and warm chandelier lighting, the venue creates a luxurious ambience that feels both modern and timeless.</p>
+        <div class="venue-divider"></div>
         <div class="venue-specs">
           <div class="spec-row"><span class="spec-label">Setting</span><span class="spec-val">Indoor Lounge</span></div>
           <div class="spec-row"><span class="spec-label">Capacity</span><span class="spec-val">Capacity: 150 Guests</span></div>
         </div>
-        <div class="venue-divider"></div>
       </div>
     </div>
 
@@ -1007,11 +1026,11 @@ ul { list-style: none; }
         <p class="venue-sub">Dining Hall</p>
         <div class="venue-divider"></div>
         <p class="venue-desc">Designed to bring people together through memorable dining experiences, Celestia is an elegant dining hall where contemporary architecture meets warmth and comfort. Surrounded by expansive glass panels, it offers a seamless blend of indoor sophistication and open-air charm.</p>
+        <div class="venue-divider"></div>
         <div class="venue-specs">
           <div class="spec-row"><span class="spec-label">Setting</span><span class="spec-val">Indoor Dining</span></div>
           <div class="spec-row"><span class="spec-label">Capacity</span><span class="spec-val">Capacity: 300 Guests</span></div>
         </div>
-        <div class="venue-divider"></div>
       </div>
     </div>
 
