@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"c:\\\\Users\\\\HP\\\\Desktop\\\\projects\\\\le veloura dem\" -Recurse -Directory)",
+      "Bash(Select-Object FullName)"
+    ]
+  }
+}
