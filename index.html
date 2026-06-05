@@ -299,6 +299,16 @@ ul { list-style: none; }
   margin: 60px auto clamp(80px, 10vw, 140px);
   padding: 0 var(--px);
 }
+
+/* ── SUITES GRID ─────────── */
+.suites-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 80px 56px;
+  max-width: 1200px;
+  margin: 60px auto 0;
+  padding: 0 var(--px);
+}
 .venue-block {
   display: flex;
   flex-direction: column;
@@ -388,6 +398,7 @@ ul { list-style: none; }
 }
 @media (max-width: 640px) {
   .spaces-grid { grid-template-columns: 1fr; gap: 60px; }
+  .suites-grid { grid-template-columns: 1fr; gap: 60px; }
   .venue-gallery { aspect-ratio: 4/3; }
 }
 
@@ -857,12 +868,12 @@ ul { list-style: none; }
     <div class="reveal d2">
       <div class="intro-body">
         <p>Le Veloura was envisioned as a place where every celebration is held with equal reverence — where the grandeur of a wedding morning and the warmth of a family gathering both feel entirely at home. Set across a generous 1.5-acre estate near Calicut, the property offers four distinct spaces, each designed with intention.</p>
-        <p>Positioned in Thadampattuthazham, Kozhikode, and a comfortable 40-minute drive from Calicut International Airport, Le Veloura blends the ease of accessibility with the seclusion of a private retreat.</p>
+        <p>Positioned in Thadampattuthazham, Kozhikode, and a comfortable 35-minute drive from Calicut International Airport, Le Veloura blends the ease of accessibility with the seclusion of a private retreat.</p>
       </div>
       <div class="intro-pills">
         <span class="pill">1.5 Acre Estate</span>
         <span class="pill">Thadampattuthazham</span>
-        <span class="pill">40 Min from Airport</span>
+        <span class="pill">35 Min from Airport</span>
         <span class="pill">Four Distinct Spaces</span>
       </div>
     </div>
@@ -889,7 +900,7 @@ ul { list-style: none; }
     <!-- AURELIUS - Grand Hall Interior -->
     <div class="sov-card reveal">
       <div class="sov-illus">
-        <img src="veloura-imgs/sov_aurelius_crop.webp?v=26" alt="Aurelius Celebration Hall illustration" style="width:100%;height:100%;object-fit:contain;">
+        <img src="veloura-imgs/sov_aurelius_new.webp" alt="Aurelius Celebration Hall illustration" style="width:100%;height:100%;object-fit:contain;">
       </div>
       <p class="sov-name">Aurelius</p>
       <p class="sov-sub">Celebration Hall</p>
@@ -898,7 +909,7 @@ ul { list-style: none; }
     <!-- THE PROMENADE - Garden Gazebo -->
     <div class="sov-card reveal d1">
       <div class="sov-illus">
-        <img src="veloura-imgs/sov_promenade_crop.webp?v=26" alt="The Promenade Outdoor Lawn illustration" style="width:100%;height:100%;object-fit:contain;">
+        <img src="veloura-imgs/sov_promenade_new.webp" alt="The Promenade Outdoor Lawn illustration" style="width:100%;height:100%;object-fit:contain;">
       </div>
       <p class="sov-name">The Promenade</p>
       <p class="sov-sub">Outdoor Lawn</p>
@@ -907,7 +918,7 @@ ul { list-style: none; }
     <!-- THE LUMIERE - The Glass Pavilion -->
     <div class="sov-card reveal d2">
       <div class="sov-illus">
-        <img src="veloura-imgs/sov_lumiere.webp?v=26" alt="The Lumiere The Glass Pavilion illustration" style="width:100%;height:100%;object-fit:contain;">
+        <img src="veloura-imgs/sov_lumiere_new.webp" alt="The Lumiere The Glass Pavilion illustration" style="width:100%;height:100%;object-fit:contain;">
       </div>
       <p class="sov-name">The Lumiere</p>
       <p class="sov-sub">The Glass Pavilion</p>
@@ -916,7 +927,7 @@ ul { list-style: none; }
     <!-- CELESTIA - Dining Hall -->
     <div class="sov-card reveal d3">
       <div class="sov-illus">
-        <img src="veloura-imgs/sov_celestia_crop.webp?v=26" alt="Celestia Dining Hall illustration" style="width:100%;height:100%;object-fit:contain;">
+        <img src="veloura-imgs/sov_celestia_new.webp" alt="Celestia Dining Hall illustration" style="width:100%;height:100%;object-fit:contain;">
       </div>
       <p class="sov-name">Celestia</p>
       <p class="sov-sub">Dining Hall</p>
@@ -1052,6 +1063,53 @@ ul { list-style: none; }
     <p class="cul-desc">Our full-fledged commercial kitchen is at the service of caterers of your choice. We also offer priority deals with trusted catering partners to ensure every plate carries the same intention as every other detail of your event.</p>
   </div>
 
+</section>
+
+
+<!-- ════════════════════════════════
+     SIGNATURE SUITES
+════════════════════════════════ -->
+<section id="suites" style="background: var(--sage); padding: var(--py) var(--px); text-align: center;">
+  <p class="sov-eyebrow reveal" style="color: var(--burgundy);">PRIVATE SPACES</p>
+  <div class="photo-diamond reveal"></div>
+  <h2 class="photo-h2 reveal" style="margin-bottom: 24px; font-size: clamp(24px, 3vw, 36px); letter-spacing: 0.1em;">SIGNATURE SUITES</h2>
+  <p class="sov-body reveal" style="margin-bottom: clamp(40px, 6vw, 80px);">Dedicated spaces for the bride and groom, offering comfort, privacy, and premium amenities for a calm preparation before the celebrations begin.</p>
+
+  <div class="suites-grid" style="align-items: start;">
+    <!-- VALOR SUITE -->
+    <div class="venue-block reveal" id="suite-valor" style="align-items: center; text-align: center;">
+      <div class="venue-gallery" style="width: 100%; aspect-ratio: 4/3; margin-bottom: 28px;">
+        <div class="vg-controls">
+          <button class="vg-btn prev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+          <button class="vg-btn next" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+        </div>
+        <div class="vg-cell active"><img src="veloura-imgs/valor_01.webp" alt="Valor Suite 1" loading="lazy"></div>
+        <div class="vg-cell"><img src="veloura-imgs/valor_02.webp" alt="Valor Suite 2" loading="lazy"></div>
+        <div class="vg-cell"><img src="veloura-imgs/valor_03.webp" alt="Valor Suite 3" loading="lazy"></div>
+        <div class="vg-cell"><img src="veloura-imgs/valor_04.webp" alt="Valor Suite 4" loading="lazy"></div>
+        <div class="vg-cell"><img src="veloura-imgs/valor_05.webp" alt="Valor Suite 5" loading="lazy"></div>
+        <div class="vg-cell"><img src="veloura-imgs/valor_06.webp" alt="Valor Suite 6" loading="lazy"></div>
+      </div>
+      <p style="font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--burgundy); margin-bottom: 12px;">THE GROOM'S SUITE</p>
+      <h3 style="font-family: 'Cormorant Garamond', serif; font-size: clamp(20px, 2vw, 26px); color: var(--text);">Valor Suite</h3>
+    </div>
+
+    <!-- VOWS SUITE -->
+    <div class="venue-block reveal d1" id="suite-vows" style="align-items: center; text-align: center;">
+      <div class="venue-gallery" style="width: 100%; aspect-ratio: 4/3; margin-bottom: 28px;">
+        <div class="vg-controls">
+          <button class="vg-btn prev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+          <button class="vg-btn next" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+        </div>
+        <div class="vg-cell active"><img src="veloura-imgs/vows_01.webp" alt="Vows Suite 1" loading="lazy"></div>
+        <div class="vg-cell"><img src="veloura-imgs/vows_02.webp" alt="Vows Suite 2" loading="lazy"></div>
+        <div class="vg-cell"><img src="veloura-imgs/vows_03.webp" alt="Vows Suite 3" loading="lazy"></div>
+        <div class="vg-cell"><img src="veloura-imgs/vows_04.webp" alt="Vows Suite 4" loading="lazy"></div>
+      </div>
+      <p style="font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--burgundy); margin-bottom: 12px;">THE BRIDAL SUITE</p>
+      <h3 style="font-family: 'Cormorant Garamond', serif; font-size: clamp(20px, 2vw, 26px); color: var(--text);">Vows Suite</h3>
+    </div>
+  </div>
 </section>
 
 
@@ -1233,6 +1291,7 @@ ul { list-style: none; }
         <li><a href="#space-promenade">The Open Garden</a></li>
         <li><a href="#space-lumiere">The Glass House</a></li>
         <li><a href="#space-celestia">The Dining Hall</a></li>
+        <li><a href="#suites">Signature Suites</a></li>
         <li><a href="#photo-section">Photography</a></li>
         <li><a href="#gallery">Gallery</a></li>
       </ul>
